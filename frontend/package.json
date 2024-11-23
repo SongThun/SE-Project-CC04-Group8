@@ -12,7 +12,13 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.3",
     "tailwindcss": "^3.4.15",
     "vite": "^5.4.11"
+  },
+  "dependencies": {
+    "frontend": "file:",
+    "react-router-dom": "^7.0.0",
+    "watch": "^0.13.0"
   }
 }
