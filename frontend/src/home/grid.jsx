@@ -12,9 +12,8 @@ const Home = () => {
                     throw new Error('Failed to fetch users');
                 }
                 return response.json();
-
             })
-            .then((data) => {setUsers(data);console.log(data)})
+            .then((data) => setUsers(data))
             .catch((error) => setError(error.message));
     }, []);
 
@@ -24,7 +23,7 @@ const Home = () => {
             {error && <p style={{ color: 'red' }}>{error}</p>}
             <ul>
                 {users.map((user) => (
-                    <li key={user.user_id}>{user.user_name}</li>
+                    <li key={user.id}>{user.name}</li>
                 ))}
             </ul>
         </div>
