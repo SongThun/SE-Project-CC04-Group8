@@ -1,30 +1,57 @@
-import React from 'react';
-import { Link, Outlet,useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Outlet, useNavigate, useLocation } from 'react-router-dom';
+import {
+  LayoutDashboard, 
+  FileSliders,
+  Printer,
+  FileClock
+} from 'lucide-react';
 
 const SidebarSPSO = () => {
-    const navigate = useNavigate();
-    const navItems = [
-      { link: "Dashboard", path: `` },
-      { link: "Config", path: `config/` },
-      { link: "Printer", path: `printer/` },
-      { link: "PrintHistory", path: `print-history/` },
-    ];
+  const location = useLocation(); // Get current location
+  const navigate = useNavigate();
+
+  const iconSize = 15
+  const navItems = [
+    { link: "Bảng điều khiển", path: "" , element: <LayoutDashboard size={iconSize}/>},
+    { link: "Quản lý cấu hình", path: "config/", element: <FileSliders size={iconSize}/>},
+    { link: "Máy in", path: "printer/" , element: <Printer size={iconSize}/>},
+    { link: "Lịch sử hoạt động", path: "print-history/", element: <FileClock size={iconSize}/> },
+  ];
+
+  const [current, setCurrent] = useState("Bảng điều khiển");
+
+  useEffect(() => {
+    // Match the current path with navItems and set current
+    const currentPath = location.pathname;
+    const matchedItem = navItems.slice(1).find(item => currentPath.includes(item.path));
+    if (matchedItem) {
+      setCurrent(matchedItem.link); // Set current to the matched link
+    }
+  }, [location]); // Update current when location changes
+
+  const handleNavigate = (link, path) => {
+    setCurrent(link); // Set current to the clicked link
+    navigate(path); // Navigate to the corresponding path
+  };
+
   return (
     <div className="flex h-screen pt-[80px]">
       {/* Sidebar */}
-      <nav className="w-64 p-4 overflow-y-auto">
-      <ul className="space-y-4">
-        {navItems.map(({ link, path }) => (
-          <li key={path}>
-            <button
-              onClick={() => navigate(path)}
-              className="w-full text-left px-4 py-2 text-gray-700 text-lg font-medium rounded hover:bg-[#25295C] hover:text-white transition-colors"
-            >
-              {link}
-            </button>
-          </li>
-        ))}
-      </ul>
+      <nav className="p-4 overflow-y-auto">
+        <ul>
+          {navItems.map((nav, id) => (
+            <li key={id} className={current === nav.link ? "bg-blue-50 text-blue-500" : "text-gray-500"}>
+              <button
+                onClick={() => handleNavigate(nav.link, nav.path)}
+                className="w-full pl-4 pr-10 py-2 hover:bg-blue-50 hover:text-blue-500 flex items-center"
+              >
+                {nav.element}
+                <p className="pl-2 text-left text-md font-semibold">{nav.link}</p>
+              </button>
+            </li>
+          ))}
+        </ul>
       </nav>
 
       {/* Main Content */}

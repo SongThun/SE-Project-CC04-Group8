@@ -50,7 +50,7 @@ const Printer = () => {
 
     return (
         <div
-            className="p-12 bg-cover bg-center bg-no-repeat overflow-y-auto"
+            className="p-8 bg-cover bg-center bg-no-repeat overflow-y-auto"
             style={{
                 backgroundImage: `url(${backgroundImage})`,
             }}
