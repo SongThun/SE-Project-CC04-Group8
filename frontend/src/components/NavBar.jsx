@@ -45,8 +45,9 @@ const Navbar = () => {
   ];
 
   return (
+    <header className="fixed w-full z-50">
     <div
-      className={`w-full h-[80px]  space-x-9 px-4 md:px-8 bg-white shadow border-b border-neutral-100 flex items-center justify-between transition-all duration-300 ${isScrolled ? 'bg-blue-500 shadow-md' : ''}`}
+      className={` w-full h-[80px]  space-x-9 px-4 md:px-8 bg-white shadow border-b border-neutral-100 flex items-center justify-between transition-all duration-300 ${isScrolled ? 'bg-blue-500 shadow-md' : ''}`}
     >
       {/* Logo Section */}
       <div className="flex items-center">
@@ -174,6 +175,7 @@ const Navbar = () => {
         </div>
       </div>
     </div>
+  </header>
   );
 };
 
