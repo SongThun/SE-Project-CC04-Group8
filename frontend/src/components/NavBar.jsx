@@ -11,35 +11,6 @@ import {
 } from "lucide-react";
 
 const Navbar = () => {
-  // return (
-  //   <div className="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4">
-  //     <div className="shrink-0">
-  //       <svg 
-  //         className="h-12 w-12 text-purple-500" 
-  //         xmlns="http://www.w3.org/2000/svg" 
-  //         fill="none" 
-  //         viewBox="0 0 24 24" 
-  //         stroke="currentColor"
-  //       >
-  //         <path 
-  //           strokeLinecap="round" 
-  //           strokeLinejoin="round" 
-  //           strokeWidth={2} 
-  //           d="M13 10V3L4 14h7v7l9-11h-7z" 
-  //         />
-  //       </svg>
-  //     </div>
-  //     <div>
-  //       <div className="text-xl font-medium text-black">Tailwind Test</div>
-  //       <p className="text-gray-500">Responsive design check</p>
-  //       <div className="mt-4">
-  //         <button className="px-4 py-2 bg-purple-500 text-white rounded-md hover:bg-purple-600 transition-colors duration-300">
-  //           Click Me
-  //         </button>
-  //       </div>
-  //     </div>
-  //   </div>
-  // );
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [showMenuUsers, setShowMenuUsers] = useState(false);
