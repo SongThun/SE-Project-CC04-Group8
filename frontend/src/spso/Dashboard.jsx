@@ -33,7 +33,7 @@ const Dashboard = () => {
   }, [])
   return (
     <div
-      className="h-screen w-screen bg-cover bg-center bg-no-repeat"
+      className="pt-[80px] p-12 h-screen bg-cover bg-center bg-no-repeat"
       style={{
         backgroundImage: `url(${backgroundImage})`,
       }}
@@ -142,7 +142,7 @@ const Dashboard = () => {
                 </tbody>
               </table>
               <div className="text-center mt-4">
-                <button className="px-10 bg-gray-200 rounded-xl hover:bg-blue-600 hover:text-white">
+                <button className="px-10 bg-gray-200 rounded-xl hover:bg-[#25295C] hover:text-white">
                   ...
                 </button>
               </div>

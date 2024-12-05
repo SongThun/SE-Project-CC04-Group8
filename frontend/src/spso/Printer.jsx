@@ -22,7 +22,7 @@ const Printer = () => {
 
     return (
 			<div
-				className="h-screen w-screen bg-cover bg-center bg-no-repeat"
+				className="pt-[80px] p-12 h-screen bg-cover bg-center bg-no-repeat"
 				style={{
 					backgroundImage: `url(${backgroundImage})`,
 				}}
