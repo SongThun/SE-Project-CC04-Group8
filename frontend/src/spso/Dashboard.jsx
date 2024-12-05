@@ -20,7 +20,6 @@ const Dashboard = () => {
             throw new Error('Failed to fetch printers');
         }
         return response.json();
-
     })
     .then((data) => {setPrinters(data); console.log(data)})
     .catch((error) => setError(error.message));
@@ -29,8 +28,8 @@ const Dashboard = () => {
       {config_name: "Số giấy mặc định", value: "50", datetime: "234234"},
       {config_name: "File type", value: "pdf, txt", datetime: "234234"},
     ])
-
   }, [])
+
   return (
     <div
       className="pt-[80px] p-12 h-screen bg-cover bg-center bg-no-repeat"
@@ -38,22 +37,21 @@ const Dashboard = () => {
         backgroundImage: `url(${backgroundImage})`,
       }}
     >
-        <div className="grid auto-rows-min gap-6">
+      <div className="container mx-auto px-4 py-6 max-w-7xl">
+        <div className="grid auto-rows-min gap-6 max-h-screen overflow-y-auto">
           {/* Card thông báo */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <div className="bg-white shadow-md rounded-lg overflow-hidden">
               <div className="p-6">
                 <h1 className="text-center text-lg font-bold text-gray-800">THÔNG BÁO</h1>
-                {
-                  noti.map((n, index) => {
-                    return <p key={index} className="mt-2 text-sm text-gray-600">
-                      {n.info}
-                    </p>
-                  })
-                }
+                {noti.map((n, index) => (
+                  <p key={index} className="mt-2 text-sm text-gray-600">
+                    {n.info}
+                  </p>
+                ))}
                 <div className="text-center mt-4">
-                  <button className="px-10 bg-gray-200 rounded-xl hover:bg-blue-600 hover:text-white">
-                    ...
+                  <button className="px-10 py-2 bg-gray-200 rounded-xl hover:bg-blue-600 hover:text-white transition">
+                    Xem thêm
                   </button>
                 </div>
               </div>
@@ -63,16 +61,14 @@ const Dashboard = () => {
             <div className="bg-white shadow-md rounded-lg overflow-hidden">
               <div className="p-6">
                 <h1 className="text-center text-lg font-bold text-gray-800">SINH VIÊN</h1>
-                {
-                  noti.map((n, index) => {
-                    return <p key={index} className="mt-2 text-sm text-gray-600">
-                      {n.info}
-                    </p>
-                  })
-                }
+                {noti.filter(n => n.type === "student").map((n, index) => (
+                  <p key={index} className="mt-2 text-sm text-gray-600">
+                    {n.info}
+                  </p>
+                ))}
                 <div className="text-center mt-4">
-                  <button className="px-10 bg-gray-200 rounded-xl hover:bg-blue-600 hover:text-white">
-                    ...
+                  <button className="px-10 py-2 bg-gray-200 rounded-xl hover:bg-blue-600 hover:text-white transition">
+                    Xem thêm
                   </button>
                 </div>
               </div>
@@ -83,18 +79,18 @@ const Dashboard = () => {
           <div className="bg-white shadow-md rounded-lg overflow-hidden">
             <div className="p-6">
               <h1 className="text-center text-lg font-bold text-gray-800">TÌNH TRẠNG MÁY IN</h1>
-              <table className="mt-4 min-w-full text-center">
-                <thead>
-                  <tr className="border-b bg-gray-100 text-gray-700">
-                    <th className="py-1">ID Máy in</th>
-                    <th className="py-1">Vị trí</th>
-                    <th className="py-1">Tình trạng</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {
-                    printers.map((printer, index) => {
-                      return <tr key={index} className="text-center hover:bg-gray-50">
+              <div className="overflow-x-auto">
+                <table className="mt-4 min-w-full text-center">
+                  <thead>
+                    <tr className="border-b bg-gray-100 text-gray-700">
+                      <th className="py-1">ID Máy in</th>
+                      <th className="py-1">Vị trí</th>
+                      <th className="py-1">Tình trạng</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {printers.map((printer, index) => (
+                      <tr key={index} className="text-center hover:bg-gray-50">
                         <td className="py-1">{printer.printerId}</td>
                         <td className="py-1">{printer.location}</td>
                         <td className="py-1">
@@ -105,13 +101,13 @@ const Dashboard = () => {
                           </button>
                         </td>
                       </tr>
-                    })
-                  }
-                </tbody>
-              </table>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
               <div className="text-center mt-4">
-                <button className="px-10 bg-gray-200 rounded-xl hover:bg-blue-600 hover:text-white">
-                  ...
+                <button className="px-10 py-2 bg-gray-200 rounded-xl hover:bg-blue-600 hover:text-white transition">
+                  Xem thêm
                 </button>
               </div>
             </div>
@@ -121,37 +117,36 @@ const Dashboard = () => {
           <div className="bg-white shadow-md rounded-lg overflow-hidden">
             <div className="p-6">
               <h1 className="text-center text-lg font-bold text-gray-800">LỊCH CẬP NHẬT CẤU HÌNH</h1>
-              <table className="mt-4 min-w-full">
-                <thead>
-                  <tr className="text-center border-b bg-gray-100 text-gray-700">
-                    <th className="py-1">Cấu hình</th>
-                    <th className="py-1">Thông tin</th>
-                    <th className="py-1">Ngày cập nhật</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {
-                    configSchedule.map((cs, index) => {
-                      return <tr key={index} className="text-center hover:bg-gray-50">
+              <div className="overflow-x-auto">
+                <table className="mt-4 min-w-full">
+                  <thead>
+                    <tr className="text-center border-b bg-gray-100 text-gray-700">
+                      <th className="py-1">Cấu hình</th>
+                      <th className="py-1">Thông tin</th>
+                      <th className="py-1">Ngày cập nhật</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {configSchedule.map((cs, index) => (
+                      <tr key={index} className="text-center hover:bg-gray-50">
                         <td className="py-1">{cs.config_name}</td>
                         <td className="py-1">{cs.value}</td>
                         <td className="py-1">{cs.datetime}</td>
                       </tr>
-                    })
-                  }
-                </tbody>
-              </table>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
               <div className="text-center mt-4">
-                <button className="px-10 bg-gray-200 rounded-xl hover:bg-[#25295C] hover:text-white">
-                  ...
+                <button className="px-10 py-2 bg-gray-200 rounded-xl hover:bg-blue-600 hover:text-white transition">
+                  Xem thêm
                 </button>
               </div>
             </div>
           </div>
-
-
         </div>
       </div>
+    </div>
   )
 }
 
