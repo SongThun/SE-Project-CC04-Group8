@@ -2,7 +2,8 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import Home from "../home/Home";
 import Board from "../dash/Home";
-import PaperPurchaseHome from "../pages/PaperPurchaseHome";
+
+import PaperPurchase from "../pages/PaperPurchase";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -13,8 +14,8 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/PaperPurchaseHome",
-        element: <PaperPurchaseHome />,
+        path: "/PaperPurchase",
+        element: <PaperPurchase />,
       },
 
       // {
