@@ -38,7 +38,7 @@ const PayPaperBoard = ({
     <div className="relative">
       <button
         onClick={openModal}
-        className="bg-blue-500 h-10 text-white p-4 rounded-lg flex justify-center items-center"
+        className="bg-blue-500 h-10 w-40 text-white p-4 rounded-lg flex justify-center items-center"
       >
         Mua giấy
       </button>
