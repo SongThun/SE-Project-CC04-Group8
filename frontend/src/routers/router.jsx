@@ -3,7 +3,8 @@ import App from "../App";
 import Home from "../home/Home";
 import Board from "../dash/Home";
 import Signin from "../components/SignIn";
-import PaperPurchaseHome from "../pages/PaperPurchaseHome";
+
+import PaperPurchase from "../pages/PaperPurchase";
 import { Outlet } from "react-router-dom";
 import ProtectedRoute from "../components/ProtectedRoute";
 import { useAuth } from "../context/AuthContext"; 
@@ -31,7 +32,6 @@ const router = createBrowserRouter([
         path: "/signin-as",
         element: <SigninAs />,
       },
-      {
         path: '/:username/',
         element: <AuthenticatedLayout/>,
         children:[
@@ -43,10 +43,10 @@ const router = createBrowserRouter([
             </ProtectedRoute>
           },
           {
-            path: 'PaperPurchaseHome',
+            path: 'PaperPurchase',
             element:
             <ProtectedRoute>
-              <PaperPurchaseHome/>
+              <PaperPurchase/>
             </ProtectedRoute>
           }
         ]
