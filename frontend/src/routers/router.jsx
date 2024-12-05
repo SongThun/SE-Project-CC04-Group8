@@ -5,7 +5,6 @@ import Board from "../dash/Home";
 import Signin from "../components/SignIn";
 import Dashboard from "../spso/Dashboard";
 import Config from "../spso/Config";
-import Layout from "../spso/Layout";
 import Printer from "../spso/Printer";
 import PrintHistory from "../spso/PrintHistory";
 import PaperPurchase from "../pages/PaperPurchase";
