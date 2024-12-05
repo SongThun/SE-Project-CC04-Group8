@@ -14,7 +14,7 @@ const PayPaperBoard = ({
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const handleQuantityChange = (e) => {
-    setQuantity(e.target.value);
+    setQuantity(parseInt(e.target.value, 10) || 1); // Ensure quantity is an integer, default to 1 if invalid input
   };
 
   const handlePurchase = () => {
