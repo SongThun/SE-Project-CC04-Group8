@@ -65,69 +65,39 @@ const Navbar = () => {
   }, []);
 
   const navItems = [
-    {
-      link: "Trang chủ",
-      path: isAuthenticated ? `/${userInfo.username}/` : "/",
-    },
-    {
-      link: "Cửa hàng",
-      path: isAuthenticated ? `/${userInfo.username}/shop` : "/shop",
-    },
+    { link: "Trang chủ", path: isAuthenticated ? `/${userInfo.username}/` : "/" },
+    // { link: "Cửa hàng", path: isAuthenticated ? `/${userInfo.username}/shop` : "/shop" },
     { link: "In tài liệu", path: "/docs" },
     { link: "Lịch sử hoạt động", path: "/history" },
     { link: "Mua giấy", path: "/buy-paper" },
   ];
-  return (
-    <div className="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-1">
-      <Link
-        to="/signin"
-        onClick={() => setShowMenuUsers(!showMenuUsers)}
-        className="block px-4 py-2 text-lg text-gray-600 hover:bg-gray-200 mx-px"
-      >
-        Sign in
-      </Link>
-      <Link
-        to="/signup"
-        onClick={() => setShowMenuUsers(!showMenuUsers)}
-        className="block px-4 py-2 text-lg text-gray-600 hover:bg-gray-200 mx-px"
-      >
-        Sign up
-      </Link>
-    </div>
-  );
-};
+    return (
+      <div className="w-full h-[80px] px-4 md:px-8 bg-white shadow border-b border-neutral-100 flex items-center justify-between">
+        {/* Logo Section */}
+      <div className="flex items-center">
+        <img className="w-[60px] h-[60px]" src={logo} alt="Logo" />
+      </div>
 
-return (
-  <header className="fixed bg-white w-full z-50">
-    <nav
-      className={`transition-all duration-300 ${
-        isScrolled
-          ? "bg-white shadow-lg backdrop-blur-sm bg-opacity-90"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <Link
-            to="/history"
-            className="text-center text-lg text-[#737375] font-medium hover:text-blue-600 transition-colors"
-          >
-            Lịch sử hoạt động
-          </Link>
-
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navItems.map(({ link, path }) => (
-              <Link
-                key={path}
-                to={path}
-                className="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors relative group"
-              >
-                {link}
-                <span className="absolute inset-x-0 bottom-0 h-0.5 bg-blue-600 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
-              </Link>
-            ))}
+      {/* Navigation Links Section */}
+      <div className="flex gap-10 flex-1 justify-start items-center">
+        <div className="flex gap-6">
+          {navItems.map(({ link, path }) => (
+            <button
+              key={path}
+              onClick={() => navigate(path)}
+              className="text-center text-lg text-[#737375] font-medium hover:text-blue-600 transition-colors"
+            >
+              {link}
+            </button>
+          ))}
+        </div>
+      </div>
+  
+        {/* User Info Section */}
+        <div className="flex items-center gap-4">
+          {/* Message Icon */}
+          <div className="w-6 h-6 bg-neutral-50 rounded-full flex justify-center items-center hover:bg-blue-100 transition-colors">
+            <MessageCircle className="h-5 w-5 text-gray-600 hover:text-blue-600" />
           </div>
 
           {/* Right side icons */}
