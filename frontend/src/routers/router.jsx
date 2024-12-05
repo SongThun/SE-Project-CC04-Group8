@@ -32,6 +32,7 @@ const router = createBrowserRouter([
         path: "/signin-as",
         element: <SigninAs />,
       },
+      {
         path: '/:username/',
         element: <AuthenticatedLayout/>,
         children:[
