@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { useAuth } from '../context/AuthContext';
 import api from '../api/api';
+import logo from '../assets/logoBK.png';
 
 const SigninAs = () => {
   const { loginStudent, loginSPSO } = useAuth();
@@ -46,8 +47,9 @@ const SigninAs = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white shadow-lg rounded-lg max-w-sm w-full p-6">
-        <h1 className="text-2xl font-bold text-center text-gray-800 mb-6">Login as {loginType === 'student' ? 'Student' : 'SPSO'}</h1>
+        <div className="bg-white shadow-lg rounded-lg max-w-sm w-full p-6">
+        <img src={logo} alt="logo" className="w-24 mx-auto" />
+        <h1 className="text-2xl font-bold text-center text-gray-800 mb-6">Đăng nhập {loginType === 'student' ? 'Sinh Viên' : 'Quản Lý'}</h1>
 
         {/* Error Message */}
         {errMsg && (
@@ -60,7 +62,7 @@ const SigninAs = () => {
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label htmlFor="username" className="block text-sm font-medium text-gray-600">
-              Username
+              Tên đăng nhập
             </label>
             <input
               id="username"
@@ -75,7 +77,7 @@ const SigninAs = () => {
 
           <div className="mb-6">
             <label htmlFor="password" className="block text-sm font-medium text-gray-600">
-              Password
+              Mật khẩu
             </label>
             <div className="relative">
               <input
