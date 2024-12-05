@@ -1,11 +1,11 @@
 import React from 'react'
-import Sidebar from "../components/SPSOsidebar";
+// import Sidebar from "../components/Sidebar1";
 
 const Layout = ({ children }) => {
   return (
     <div className="flex">
       {/* Sidebar */}
-      <Sidebar />
+      {/* <Sidebar /> */}
       <div className="flex-1 bg-gray-100">
         {/* Main Content */}
         {children}

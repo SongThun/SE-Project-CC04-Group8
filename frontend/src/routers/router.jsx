@@ -2,16 +2,19 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import Home from "../home/Home";
 import Board from "../dash/Home";
-<<<<<<< HEAD
-=======
 import Signin from "../components/SignIn";
-
+import Dashboard from "../spso/Dashboard";
+import Config from "../spso/Config";
+import Layout from "../spso/Layout";
+import Printer from "../spso/Printer";
+import PrintHistory from "../spso/PrintHistory";
 import PaperPurchase from "../pages/PaperPurchase";
 import { Outlet } from "react-router-dom";
 import ProtectedRoute from "../components/ProtectedRoute";
 import { useAuth } from "../context/AuthContext"; 
 import SigninAs from "../components/SignInAs";
 import Navbar from "../components/NavBar";
+import SidebarSPSO from "../components/SideBarSPSO";
 const AuthenticatedLayout = ({children}) => {
   const{userInfo} = useAuth();
   return (
@@ -21,7 +24,6 @@ const AuthenticatedLayout = ({children}) => {
     </div>
   );
 } 
->>>>>>> 45495ff735264c0ebc287f7e523243bb8dc78f3e
 const router = createBrowserRouter([
   {
     path: "/",
@@ -53,14 +55,52 @@ const router = createBrowserRouter([
               <PaperPurchase/>
             </ProtectedRoute>
           },
-          // {
-          //   path:'management',
-          //   element: (
-          //     <ProtectedRoute allowedRoles={['spso']}>
-          //       <EmployeeDashboard/>
-          //     </ProtectedRoute>
-          //   )
-          // },
+          {
+            path:'spso',
+            element:
+              <ProtectedRoute allowedRoles={['spso']}>
+              <SidebarSPSO/>
+              </ProtectedRoute>
+            ,
+            children:[
+              {
+                path: '',
+                element:               
+              <ProtectedRoute allowedRoles={['spso']}>
+                <Dashboard/>
+              </ProtectedRoute>
+              },
+              { 
+                path: 'config',
+                element: 
+                <ProtectedRoute allowedRoles={['spso']}>
+                  <Config/>
+                </ProtectedRoute>
+
+              },
+              { 
+                path: 'printer',
+                element: 
+                <ProtectedRoute allowedRoles={['spso']}>
+                  <Printer/>
+                </ProtectedRoute>
+              },
+              { 
+                path: 'layout',
+                element: 
+                <ProtectedRoute allowedRoles={['spso']}>
+                  <Layout/>
+                </ProtectedRoute>
+              },
+              { 
+                path: 'print-history',
+                element: 
+                <ProtectedRoute allowedRoles={['spso']}>
+                  <PrintHistory/>
+                </ProtectedRoute>
+              },
+            ]
+          },
         ]
       }
 
