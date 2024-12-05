@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import logo from "../assets/logoBK.png";
 import {
   Menu,
   X,
-  BookOpen,
-  Search,
   ShoppingCart,
   User,
   LogOut,
+  MessageCircle, 
+  Bell
 } from "lucide-react";
 
 const Navbar = () => {
@@ -41,81 +42,35 @@ const Navbar = () => {
   //   </div>
   // );
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [showMenuUsers, setShowMenuUsers] = useState(false);
   const [cartItemCount, setCartItemCount] = useState(0);
 
   const userInfo = { username: "customer" };
   const isAuthenticated = true;
-  const isEmployee = false;
   const isCustomer = true;
 
-  const location = useLocation();
   const navigate = useNavigate();
 
   const handleLogout = () => {
     navigate("/signin");
-    setShowMenuUsers(false);
+    setIsMenuOpen(false);
   };
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      // Adjust the navbar's style based on scroll
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navItems = [
-    { link: "Home", path: isAuthenticated ? `/${userInfo.username}/` : "/" },
-    {
-      link: "Shop",
-      path: isAuthenticated ? `/${userInfo.username}/shop` : "/shop",
-    },
+  const navItems = [  
+    { link: "Trang chủ", path: isAuthenticated ? `/${userInfo.username}/` : "/" },
+    { link: "Cửa hàng", path: isAuthenticated ? `/${userInfo.username}/shop` : "/shop" },
+    { link: "In tài liệu", path: "/docs" },
+    { link: "Lịch sử hoạt động", path: "/history" },
+    { link: "Mua giấy", path: "/buy-paper" },
   ];
-
-  const renderAuthenticatedMenu = () => {
-    if (isCustomer) {
-      return (
-        <div className="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-1">
-          <Link
-            to={`/${userInfo.username}/customer-dashboard`}
-            onClick={() => setShowMenuUsers(false)}
-            className="block px-4 py-2 text-lg text-gray-600 hover:bg-gray-200 mx-px"
-          >
-            Dashboard
-          </Link>
-          <button
-            onClick={handleLogout}
-            className="w-full text-left px-4 py-2 text-lg text-gray-600 hover:bg-gray-200 mx-px"
-          >
-            LogOut
-          </button>
-        </div>
-      );
-    }
-
-    if (isEmployee) {
-      return (
-        <div className="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-1">
-          <Link
-            to={`/${userInfo.username}/employee-dashboard`}
-            onClick={() => setShowMenuUsers(false)}
-            className="block px-4 py-2 text-lg text-gray-600 hover:bg-gray-200 mx-px"
-          >
-            Dashboard
-          </Link>
-          <button
-            onClick={handleLogout}
-            className="w-full text-left px-4 py-2 text-lg text-gray-600 hover:bg-gray-200 mx-px"
-          >
-            LogOut
-          </button>
-        </div>
-      );
-    }
-
     return (
       <div className="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-1">
         <Link
@@ -149,11 +104,10 @@ const Navbar = () => {
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <Link
-              to={isAuthenticated ? `/${userInfo.username}/` : "/"}
-              className="flex items-center space-x-2 text-blue-700 hover:text-blue-500 transition-colors"
+              to="/history"
+              className="text-center text-lg text-[#737375] font-medium hover:text-blue-600 transition-colors"
             >
-              <BookOpen className="h-6 w-6" />
-              <span className="font-bold text-xl">BookStore</span>
+              Lịch sử hoạt động
             </Link>
 
             {/* Desktop Navigation */}
@@ -218,8 +172,8 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-
-        {/* Mobile menu */}
+  
+        {/* Mobile Menu */}
         <div
           className={`md:hidden transition-all duration-300 ease-in-out ${
             isMenuOpen
@@ -227,15 +181,21 @@ const Navbar = () => {
               : "max-h-0 opacity-0 pointer-events-none"
           }`}
         >
-          <div className="px-2 pt-2 pb-3 space-y-1 bg-white shadow-lg">
-            {navItems.map(({ link, path }) => (
+          <div className="bg-white shadow-lg p-4 space-y-4">
+            <div className="flex flex-col gap-4">
               <Link
-                key={path}
-                to={path}
-                className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-colors"
+                to="/"
+                className="text-gray-600 font-medium hover:text-blue-600 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
-                {link}
+                Trang chủ
+              </Link>
+              <Link
+                to="/docs"
+                className="text-gray-600 font-medium hover:text-blue-600 transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                In tài liệu
               </Link>
             ))}
             <div className="flex items-center space-x-4 px-3 py-2">
@@ -283,9 +243,7 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-      </nav>
-    </header>
-  );
-};
-
-export default Navbar;
+      </div>
+    );
+  };
+  export default Navbar;
