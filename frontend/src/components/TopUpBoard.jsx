@@ -21,7 +21,7 @@ const TopUpBoard = ({ setAccountBalance, addTransaction }) => {
     <div className="relative">
       <button
         onClick={openModal}
-        className="bg-green-500 h-10 text-white p-4 rounded-lg flex justify-center items-center"
+        className="bg-green-500 h-10 w-40 text-white p-4 rounded-lg flex justify-center items-center"
       >
         Nạp thêm tiền
       </button>
