@@ -5,7 +5,7 @@ const App = () => {
   return (
     <>
       <main>
-        <Navbar />
+        {/* <Navbar /> */}
         {console.log("App.jsx")}
         <Outlet />
       </main>
