@@ -9,15 +9,41 @@ import {
   User,
   LogOut,
 } from "lucide-react";
-import { useAuth } from "../context/AuthContext";
 
 const Navbar = () => {
+  // return (
+  //   <div className="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4">
+  //     <div className="shrink-0">
+  //       <svg 
+  //         className="h-12 w-12 text-purple-500" 
+  //         xmlns="http://www.w3.org/2000/svg" 
+  //         fill="none" 
+  //         viewBox="0 0 24 24" 
+  //         stroke="currentColor"
+  //       >
+  //         <path 
+  //           strokeLinecap="round" 
+  //           strokeLinejoin="round" 
+  //           strokeWidth={2} 
+  //           d="M13 10V3L4 14h7v7l9-11h-7z" 
+  //         />
+  //       </svg>
+  //     </div>
+  //     <div>
+  //       <div className="text-xl font-medium text-black">Tailwind Test</div>
+  //       <p className="text-gray-500">Responsive design check</p>
+  //       <div className="mt-4">
+  //         <button className="px-4 py-2 bg-purple-500 text-white rounded-md hover:bg-purple-600 transition-colors duration-300">
+  //           Click Me
+  //         </button>
+  //       </div>
+  //     </div>
+  //   </div>
+  // );
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [showMenuUsers, setShowMenuUsers] = useState(false);
   const [cartItemCount, setCartItemCount] = useState(0);
-  // const { userInfo, isAuthenticated, logout, isEmployee, isCustomer } =
-  // useAuth();
 
   const userInfo = { username: "customer" };
   const isAuthenticated = true;
@@ -28,25 +54,9 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    // logout();
     navigate("/signin");
     setShowMenuUsers(false);
   };
-
-  // const fetchCartCount = async () => {
-  //   if (isAuthenticated && isCustomer && userInfo?.username) {
-  //     try {
-  //       const response = await fetch(
-  //         `http://localhost:5000/api/books/cart/${userInfo.username}`
-  //       );
-  //       const data = await response.json();
-  //       setCartItemCount(data.length);
-  //     } catch (error) {
-  //       console.error("Failed to fetch cart count:", error);
-  //       setCartItemCount(0);
-  //     }
-  //   }
-  // };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -57,10 +67,6 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // useEffect(() => {
-  //   fetchCartCount();
-  // }, [isAuthenticated, isCustomer, userInfo?.username, location.pathname]);
-  // // Nav Items
   const navItems = [
     { link: "Home", path: isAuthenticated ? `/${userInfo.username}/` : "/" },
     {
@@ -130,15 +136,6 @@ const Navbar = () => {
     );
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
     <header className="fixed w-full z-50">
       <nav
@@ -196,9 +193,7 @@ const Navbar = () => {
                 >
                   <User className="h-5 w-5" />
                   {isAuthenticated && (
-                    <span className="text-sm font-medium">
-                      {userInfo?.username}
-                    </span>
+                    <span className="text-sm font-medium">{userInfo?.username}</span>
                   )}
                 </button>
 
@@ -212,11 +207,7 @@ const Navbar = () => {
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className="text-gray-600 hover:text-blue-600 transition-colors"
               >
-                {isMenuOpen ? (
-                  <X className="h-6 w-6" />
-                ) : (
-                  <Menu className="h-6 w-6" />
-                )}
+                {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
               </button>
             </div>
           </div>
@@ -225,9 +216,7 @@ const Navbar = () => {
         {/* Mobile menu */}
         <div
           className={`md:hidden transition-all duration-300 ease-in-out ${
-            isMenuOpen
-              ? "max-h-screen opacity-100"
-              : "max-h-0 opacity-0 pointer-events-none"
+            isMenuOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0 pointer-events-none"
           }`}
         >
           <div className="px-2 pt-2 pb-3 space-y-1 bg-white shadow-lg">
@@ -259,9 +248,7 @@ const Navbar = () => {
               {isAuthenticated ? (
                 <>
                   <Link
-                    to={`/${userInfo?.username}/${
-                      isCustomer ? "customer" : "employee"
-                    }-dashboard`}
+                    to={`/${userInfo?.username}/${isCustomer ? "customer" : "employee"}-dashboard`}
                     className="text-gray-600 hover:text-blue-600 transition-colors"
                     onClick={() => setIsMenuOpen(false)}
                   >
