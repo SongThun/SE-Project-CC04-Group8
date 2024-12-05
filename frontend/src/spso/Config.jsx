@@ -3,22 +3,39 @@ import Header from "../components/Header";
 import { Search } from "lucide-react";
 
 const Config = () => {
-    const [config, setConfig] = useState([]);
+    const [config, setConfig] = useState([
+			{
+				config_name: "Loại tệp được phép",
+				information: "PDF, DOCX, JPEG, PNG",
+				published_date: "2024-12-10",
+			},
+			{
+				config_name: "Kích thước tệp tối đa",
+				information: "20MB",
+				published_date: "2024-12-12",
+			},
+			{
+				config_name: "Số trang mặc định",
+				information: "50 trang",
+				published_date: "2024-12-15",
+			},
+			{
+				config_name: "Số trang tối đa khi mua",
+				information: "100 trang",
+				published_date: "2024-12-20",
+			},
+			{
+				config_name: "Chi phí cho một trang",
+				information: "500 VNĐ",
+				published_date: "2024-12-25",
+			},
+			{
+				config_name: "Kích thước giấy hỗ trợ",
+				information: "A4, A3",
+				published_date: "2025-01-05",
+			}
+		]);
     const [error, setError] = useState(null);
-
-    useEffect(() => {
-        // Fetch data from the API
-        fetch('/api/spso/getConfig')
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error('Failed to fetch printers');
-                }
-                return response.json();
-
-            })
-            .then((data) => {setConfig(data); console.log(data)})
-            .catch((error) => setError(error.message));
-    }, []);
 
     return (
 				<div className="p-6">
@@ -39,28 +56,18 @@ const Config = () => {
 							<table className="mt-6 min-w-full text-center">
 									<thead className="bg-gray-100 h-[40px] font-semibold text-gray-500">
 											<tr>
-													<th>PrinterID</th>
-													<th>Hãng</th>
-													<th>Địa điểm</th>
-													<th>Cập nhật lần cuối</th>
-													<th>Tình trạng</th>
+													<th>Cấu hình</th>
+													<th>Thông tin</th>
+													<th>Có hiệu lực từ</th>
 											</tr>
 											
 									</thead>
 									<tbody>
-											{config.map((p, index) => (
+											{config.map((cf, index) => (
 													<tr key={index} className="h-[40px] border-b border-gray-50 hover:bg-gray-50">
-															<td>{p.printerId}</td>
-															<td>{p.brand}</td>
-															<td>{p.location}</td>
-															<td>{p.last_updated}</td>
-															<td className="py-1">
-																<button 
-																	className={`w-32 rounded-xl py-1 text-sm font-semibold ${p.status === "Hoạt động" ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"}`}
-																>
-																	{p.status}
-																</button>
-															</td>
+															<td>{cf.config_name}</td>
+															<td>{cf.information}</td>
+															<td>{cf.published_date}</td>
 													</tr>
 											))}
 									</tbody>
