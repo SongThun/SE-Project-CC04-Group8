@@ -4,17 +4,17 @@ import Home from "../home/Home";
 import Board from "../dash/Home";
 const router = createBrowserRouter([
   {
-    path: "/", 
+    path: "/",
     element: <App />,
     children: [
       {
         path: "/",
         element: <Home />,
       },
-      {
-        path: "/dashboard",
-        element: <Board />,
-      },
+      // {
+      //   path: "/dashboard",
+      //   element: <Board />,
+      // },
     ],
   },
 ]);
