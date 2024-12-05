@@ -1,14 +1,16 @@
-import React from 'react';
-import { Outlet } from 'react-router-dom';
+import React from "react";
+import { Outlet } from "react-router-dom";
+import Navbar from "./components/NavBar";
+import "./index.css";
+import { useAuth } from "./context/AuthContext"; 
+import Footer from "./components/Footer";
 const App = () => {
   return (
     <>
-      <header>
-        <h1>Simple Demo</h1>
-      </header>
       <main>
-        {console.log('App.jsx')}
-        <Outlet/>
+        {/* <Navbar /> */}
+        <Outlet />
+        <Footer/>
       </main>
     </>
   );

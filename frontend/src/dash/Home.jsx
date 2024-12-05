@@ -5,16 +5,6 @@ const Home = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        // Fetch data from the API
-        fetch('/api/users/getUser')
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error('Failed to fetch users');
-                }
-                return response.json();
-            })
-            .then((data) => setUsers(data))
-            .catch((error) => setError(error.message));
     }, []);
 
     return (
