@@ -14,18 +14,18 @@ const Navbar = () => {
   // return (
   //   <div className="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4">
   //     <div className="shrink-0">
-  //       <svg 
-  //         className="h-12 w-12 text-purple-500" 
-  //         xmlns="http://www.w3.org/2000/svg" 
-  //         fill="none" 
-  //         viewBox="0 0 24 24" 
+  //       <svg
+  //         className="h-12 w-12 text-purple-500"
+  //         xmlns="http://www.w3.org/2000/svg"
+  //         fill="none"
+  //         viewBox="0 0 24 24"
   //         stroke="currentColor"
   //       >
-  //         <path 
-  //           strokeLinecap="round" 
-  //           strokeLinejoin="round" 
-  //           strokeWidth={2} 
-  //           d="M13 10V3L4 14h7v7l9-11h-7z" 
+  //         <path
+  //           strokeLinecap="round"
+  //           strokeLinejoin="round"
+  //           strokeWidth={2}
+  //           d="M13 10V3L4 14h7v7l9-11h-7z"
   //         />
   //       </svg>
   //     </div>
@@ -137,7 +137,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className="fixed w-full z-50">
+    <header className="fixed bg-white w-full z-50">
       <nav
         className={`transition-all duration-300 ${
           isScrolled
@@ -193,7 +193,9 @@ const Navbar = () => {
                 >
                   <User className="h-5 w-5" />
                   {isAuthenticated && (
-                    <span className="text-sm font-medium">{userInfo?.username}</span>
+                    <span className="text-sm font-medium">
+                      {userInfo?.username}
+                    </span>
                   )}
                 </button>
 
@@ -207,7 +209,11 @@ const Navbar = () => {
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className="text-gray-600 hover:text-blue-600 transition-colors"
               >
-                {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                {isMenuOpen ? (
+                  <X className="h-6 w-6" />
+                ) : (
+                  <Menu className="h-6 w-6" />
+                )}
               </button>
             </div>
           </div>
@@ -216,7 +222,9 @@ const Navbar = () => {
         {/* Mobile menu */}
         <div
           className={`md:hidden transition-all duration-300 ease-in-out ${
-            isMenuOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0 pointer-events-none"
+            isMenuOpen
+              ? "max-h-screen opacity-100"
+              : "max-h-0 opacity-0 pointer-events-none"
           }`}
         >
           <div className="px-2 pt-2 pb-3 space-y-1 bg-white shadow-lg">
@@ -248,7 +256,9 @@ const Navbar = () => {
               {isAuthenticated ? (
                 <>
                   <Link
-                    to={`/${userInfo?.username}/${isCustomer ? "customer" : "employee"}-dashboard`}
+                    to={`/${userInfo?.username}/${
+                      isCustomer ? "customer" : "employee"
+                    }-dashboard`}
                     className="text-gray-600 hover:text-blue-600 transition-colors"
                     onClick={() => setIsMenuOpen(false)}
                   >
