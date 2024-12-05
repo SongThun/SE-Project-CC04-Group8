@@ -1,8 +1,9 @@
 const { connections } = require('mongoose');
 const connection = require('../config/database');
+const jwt = require('jsonwebtoken');
 
 const students = [
-    { studentID: "2211001", student_name: "Nguyễn Văn An", page_balance: 50 },
+    { studentID: "2211001", student_name: "Nguyễn Văn An", page_balance: 50 , email: "an.nguyen12345@hcmut.edu.vn", password: "123456" ,username: "an.nguyen12345" },
     { studentID: "2212002", student_name: "Trần Thị Bích", page_balance: 45 },
     { studentID: "2213003", student_name: "Phạm Minh Châu", page_balance: 60 },
     { studentID: "2214004", student_name: "Lê Hoàng Dũng", page_balance: 30 },
@@ -23,7 +24,28 @@ const students = [
     { studentID: "2313019", student_name: "Phạm Văn Tùng", page_balance: 25 },
     { studentID: "2354020", student_name: "Lê Thị Mai", page_balance: 45 },
 ];
+const validUser =  async (username, password) => {
+    try {
+        if (!username || !password) {
+            return null; // Return null if either username or password is missing
+        }
 
+        // Use find to search for the student in the list
+        const student = students.find((student) => student.username === username && student.password === password);
+
+        // If no matching student is found, return null
+        if (!student) {
+            return null;
+        }
+
+        // If a valid student is found, return the student
+        return student;
+
+    } catch (error) {
+        console.error('Error in validUser:', error);
+        throw error; // Rethrow error after logging it
+    }
+};
 module.exports = {
     getStudents : async() => {
         // try{
@@ -37,4 +59,54 @@ module.exports = {
         // }
         return students;
     },
+    
+
+    signIn : async (username, password) => {
+    try {
+        if (!username || !password) {
+            return {
+                success: false,
+                message: 'Username and password are required'
+            };
+        }
+
+        const user = await validUser(username, password);
+        if (!user) {
+            return {
+                success: false,
+                message: 'Invalid credentials'
+            };
+        }
+
+        const token = jwt.sign(
+            {
+                username: user.username,
+                user_type: user.user_type
+            },
+            process.env.JWT_SECRET,
+            {
+                expiresIn: '24h'
+            }
+        );
+
+        return {
+            success: true,
+            token,
+            user: {
+                username: user.username,
+                name: user.student_name,
+                email: user.email,
+                id: user.studentID,
+                page_balance: user.page_balance
+            }
+        }
+    } catch (error) {
+        console.error('SignIn Error:', error);
+        return {
+            success: false,
+            message: 'An error occurred during sign in',
+            error: error.message
+        };
+    }
+},
 }

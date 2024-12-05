@@ -1,24 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logoBK.png";
 import {
   Menu,
   X,
-  ShoppingCart,
-  User,
-  LogOut,
   MessageCircle,
   Bell,
+  LogOut
 } from "lucide-react";
-
+import { useAuth } from "../context/AuthContext";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [cartItemCount, setCartItemCount] = useState(0);
-
-  const userInfo = { username: "customer" };
-  const isAuthenticated = true;
-  const isCustomer = true;
-
+  const [isScrolled, setIsScrolled] = useState(false);
+  const { userInfo, isAuthenticated, isStudent, isSPSO } = useAuth();
+  // const userInfo = { username: "danh" };
+  // const isAuthenticated = true;
+  // const isStudent = true;
+  // const isSPSO = true;
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -28,22 +27,25 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Adjust the navbar's style based on scroll
+      setIsScrolled(window.scrollY > 20);  // Change the value to the scroll threshold
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const navItems = [
-    { link: "Trang chủ", path: isAuthenticated ? /${userInfo.username}/ : "/" },
-    // { link: "Cửa hàng", path: isAuthenticated ? /${userInfo.username}/shop : "/shop" },
-    { link: "In tài liệu", path: "/docs" },
-    { link: "Lịch sử hoạt động", path: "/history" },
-    { link: "Mua giấy", path: "/buy-paper" },
+    { link: "Trang chủ", path: isAuthenticated ? `/${userInfo.username}` : "/" },
+    ...(isSPSO ? [{ link: "Quản lý", path: "/management" }] : []),
+    { link: "In tài liệu", path: `/${userInfo.username}/docs` },
+    { link: "Lịch sử hoạt động", path: `/${userInfo.username}/history` },
+    { link: "Mua giấy", path: `/${userInfo.username}/PaperPurchase` },
   ];
+
   return (
-    <div className="w-full h-[80px] px-4 md:px-8 bg-white shadow border-b border-neutral-100 flex items-center justify-between">
+    <div
+      className={`w-full h-[80px]  space-x-9 px-4 md:px-8 bg-white shadow border-b border-neutral-100 flex items-center justify-between transition-all duration-300 ${isScrolled ? 'bg-blue-500 shadow-md' : ''}`}
+    >
       {/* Logo Section */}
       <div className="flex items-center">
         <img className="w-[60px] h-[60px]" src={logo} alt="Logo" />
@@ -78,7 +80,7 @@ const Navbar = () => {
 
         {/* User Name */}
         <div className="text-[#737375] text-lg font-medium font-['Inter'] hover:text-blue-600 transition-colors">
-          Trần Văn A
+        {userInfo.name}
         </div>
 
         {/* Avatar and Notification Badge */}
@@ -93,7 +95,7 @@ const Navbar = () => {
 
         {/* Log Out Icon */}
         <button
-          onClick={() => alert("Log Out")}
+          onClick={handleLogout}
           className="w-6 h-6 bg-neutral-50 rounded-full flex justify-center items-center hover:bg-blue-100 transition-colors"
         >
           <LogOut className="h-5 w-5 text-gray-600 hover:text-blue-600" />
@@ -106,20 +108,14 @@ const Navbar = () => {
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           className="text-gray-600 hover:text-blue-600 transition-colors"
         >
-          {isMenuOpen ? (
-            <X className="h-6 w-6" />
-          ) : (
-            <Menu className="h-6 w-6" />
-          )}
+          {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
       </div>
 
       {/* Mobile Menu */}
       <div
         className={`md:hidden transition-all duration-300 ease-in-out ${
-          isMenuOpen
-            ? "max-h-screen opacity-100"
-            : "max-h-0 opacity-0 pointer-events-none"
+          isMenuOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0 pointer-events-none"
         }`}
       >
         <div className="bg-white shadow-lg p-4 space-y-4">
@@ -156,7 +152,7 @@ const Navbar = () => {
 
           {/* Mobile User Info */}
           <div className="flex items-center gap-4">
-            <div className="text-gray-600 text-lg font-medium">Trần Văn A</div>
+            <div className="text-gray-600 text-lg font-medium">{userInfo.name}</div>
             <div className="relative">
               <img
                 className="w-12 h-12 rounded-full"
@@ -167,7 +163,7 @@ const Navbar = () => {
             </div>
             {/* Log Out Icon */}
             <button
-              onClick={() => alert("Log Out")}
+              onClick={handleLogout}
               className="text-gray-600 hover:text-blue-600 transition-colors"
             >
               <LogOut className="h-5 w-5" />
@@ -178,4 +174,5 @@ const Navbar = () => {
     </div>
   );
 };
+
 export default Navbar;

@@ -4,7 +4,7 @@ const {
     getPrinters
 } = require('../models/printer.model');
 const { 
-    getStudents
+    getStudents,signIn
 } = require('../models/student.model');
 const {
     getPrintHistory
@@ -12,7 +12,16 @@ const {
 
 const jwt = require('jsonwebtoken');
 const connection = require('../config/database');
-
+const signInStudent = async (req, res) => {
+    const { username, password } = req.body;
+    try {
+        const respone = await signIn(username, password);
+        return res.status(200).json(respone);
+    } catch (error) {
+        console.error('Error in signIn:', error);
+        res.status(500).json({ message: error.message });
+    }
+}
 
 const getAllPrinters = async (req, res) => {
     try {
@@ -47,5 +56,7 @@ const getAllPrintHistory = async (req, res) => {
 module.exports = {
     getAllPrinters,
     getAllStudents,
-    getAllPrintHistory
+    getAllPrintHistory,
+    signInStudent
+
 };
