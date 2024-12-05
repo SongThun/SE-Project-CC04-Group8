@@ -28,12 +28,13 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Adjust the navbar's style based on scroll
+      setIsScrolled(window.scrollY > 20);
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
 
   const navItems = [
     { link: "Trang chủ", path: isAuthenticated ? `/${userInfo.username}/` : "/" },
