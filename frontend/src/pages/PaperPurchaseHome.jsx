@@ -3,6 +3,7 @@ import backgroundImage from "../assets/cse_background.png"; // Import the image
 import TransactionTable from "../components/TransactionTable";
 
 const PaperPurchaseHome = () => {
+  console.log("PaperPurchaseHome.jsx");
   return (
     <div
       className="h-screen w-screen bg-cover bg-center bg-no-repeat flex flex-col space-y-4"

@@ -6,6 +6,7 @@ const {
 } = require('../controllers/user.controllers');
 const { verify } = require('jsonwebtoken');
 
+router.post('/getUser', getAllUser);
 router.get('/getUser', getAllUser);
 
 module.exports = router;    
