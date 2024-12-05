@@ -1,252 +1,188 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import logo from "../assets/logoBK.png";
 import {
   Menu,
   X,
-  BookOpen,
-  Search,
   ShoppingCart,
   User,
   LogOut,
+  MessageCircle, 
+  Bell
 } from "lucide-react";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [showMenuUsers, setShowMenuUsers] = useState(false);
   const [cartItemCount, setCartItemCount] = useState(0);
 
   const userInfo = { username: "customer" };
   const isAuthenticated = true;
-  const isEmployee = false;
   const isCustomer = true;
 
-  const location = useLocation();
   const navigate = useNavigate();
 
   const handleLogout = () => {
     navigate("/signin");
-    setShowMenuUsers(false);
+    setIsMenuOpen(false);
   };
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      // Adjust the navbar's style based on scroll
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navItems = [
-    { link: "Home", path: isAuthenticated ? `/${userInfo.username}/` : "/" },
-    {
-      link: "Shop",
-      path: isAuthenticated ? `/${userInfo.username}/shop` : "/shop",
-    },
+  const navItems = [  
+    { link: "Trang chủ", path: isAuthenticated ? `/${userInfo.username}/` : "/" },
+    { link: "Cửa hàng", path: isAuthenticated ? `/${userInfo.username}/shop` : "/shop" },
+    { link: "In tài liệu", path: "/docs" },
+    { link: "Lịch sử hoạt động", path: "/history" },
+    { link: "Mua giấy", path: "/buy-paper" },
   ];
-
-  const renderAuthenticatedMenu = () => {
-    if (isCustomer) {
-      return (
-        <div className="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-1">
-          <Link
-            to={`/${userInfo.username}/customer-dashboard`}
-            onClick={() => setShowMenuUsers(false)}
-            className="block px-4 py-2 text-lg text-gray-600 hover:bg-gray-200 mx-px"
-          >
-            Dashboard
-          </Link>
-          <button
-            onClick={handleLogout}
-            className="w-full text-left px-4 py-2 text-lg text-gray-600 hover:bg-gray-200 mx-px"
-          >
-            LogOut
-          </button>
-        </div>
-      );
-    }
-
-    if (isEmployee) {
-      return (
-        <div className="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-1">
-          <Link
-            to={`/${userInfo.username}/employee-dashboard`}
-            onClick={() => setShowMenuUsers(false)}
-            className="block px-4 py-2 text-lg text-gray-600 hover:bg-gray-200 mx-px"
-          >
-            Dashboard
-          </Link>
-          <button
-            onClick={handleLogout}
-            className="w-full text-left px-4 py-2 text-lg text-gray-600 hover:bg-gray-200 mx-px"
-          >
-            LogOut
-          </button>
-        </div>
-      );
-    }
-
     return (
-      <div className="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-1">
-        <Link
-          to="/signin"
-          onClick={() => setShowMenuUsers(!showMenuUsers)}
-          className="block px-4 py-2 text-lg text-gray-600 hover:bg-gray-200 mx-px"
-        >
-          Sign in
-        </Link>
-        <Link
-          to="/signup"
-          onClick={() => setShowMenuUsers(!showMenuUsers)}
-          className="block px-4 py-2 text-lg text-gray-600 hover:bg-gray-200 mx-px"
-        >
-          Sign up
-        </Link>
-      </div>
-    );
-  };
-
-  return (
-    <header className="fixed w-full z-50">
-      <nav
-        className={`transition-all duration-300 ${
-          isScrolled
-            ? "bg-white shadow-lg backdrop-blur-sm bg-opacity-90"
-            : "bg-transparent"
-        }`}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            {/* Logo */}
+      <div className="w-full h-[80px] px-4 md:px-8 bg-white shadow border-b border-neutral-100 flex items-center justify-between">
+        {/* Logo Section */}
+        <img className="w-[60px] h-[60px]" src={logo} alt="Logo" />
+  
+        {/* Navigation Links Section */}
+        <div className="flex gap-10 flex-1 justify-start items-center">
+          <div className="flex gap-6">
             <Link
-              to={isAuthenticated ? `/${userInfo.username}/` : "/"}
-              className="flex items-center space-x-2 text-blue-700 hover:text-blue-500 transition-colors"
+              to="/"
+              className="text-center text-lg text-[#001038] font-medium hover:text-blue-600 transition-colors"
             >
-              <BookOpen className="h-6 w-6" />
-              <span className="font-bold text-xl">BookStore</span>
+              Trang chủ
             </Link>
-
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-8">
-              {navItems.map(({ link, path }) => (
-                <Link
-                  key={path}
-                  to={path}
-                  className="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors relative group"
-                >
-                  {link}
-                  <span className="absolute inset-x-0 bottom-0 h-0.5 bg-blue-600 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
-                </Link>
-              ))}
-            </div>
-
-            {/* Right side icons */}
-            <div className="hidden md:flex items-center space-x-6">
-              {isCustomer && (
-                <Link
-                  to={`/${userInfo?.username}/cart`}
-                  className="text-gray-600 hover:text-blue-600 transition-colors relative"
-                >
-                  <ShoppingCart className="h-5 w-5" />
-                  {cartItemCount > 0 && (
-                    <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
-                      {cartItemCount}
-                    </span>
-                  )}
-                </Link>
-              )}
-
-              <div className="relative">
-                <button
-                  className="text-gray-600 hover:text-blue-600 transition-colors flex items-center space-x-2"
-                  onClick={() => setShowMenuUsers(!showMenuUsers)}
-                >
-                  <User className="h-5 w-5" />
-                  {isAuthenticated && (
-                    <span className="text-sm font-medium">{userInfo?.username}</span>
-                  )}
-                </button>
-
-                {showMenuUsers && renderAuthenticatedMenu()}
-              </div>
-            </div>
-
-            {/* Mobile menu button */}
-            <div className="md:hidden">
-              <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="text-gray-600 hover:text-blue-600 transition-colors"
-              >
-                {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-              </button>
-            </div>
+            <Link
+              to="/docs"
+              className="text-center text-lg text-[#737375] font-medium hover:text-blue-600 transition-colors"
+            >
+              In tài liệu
+            </Link>
+            <Link
+              to="/history"
+              className="text-center text-lg text-[#737375] font-medium hover:text-blue-600 transition-colors"
+            >
+              Lịch sử hoạt động
+            </Link>
+            <Link
+              to="/buy-paper"
+              className="text-center text-lg text-[#737375] font-medium hover:text-blue-600 transition-colors"
+            >
+              Mua giấy
+            </Link>
           </div>
         </div>
-
-        {/* Mobile menu */}
+  
+        {/* User Info Section */}
+        <div className="flex items-center gap-4">
+          {/* Message Icon */}
+          <div className="w-6 h-6 bg-neutral-50 rounded-full flex justify-center items-center hover:bg-blue-100 transition-colors">
+            <MessageCircle className="h-5 w-5 text-gray-600 hover:text-blue-600" />
+          </div>
+  
+          {/* Bell Icon */}
+          <div className="w-6 h-6 bg-neutral-50 rounded-full flex justify-center items-center hover:bg-blue-100 transition-colors">
+            <Bell className="h-5 w-5 text-gray-600 hover:text-blue-600" />
+          </div>
+  
+          {/* User Name */}
+          <div className="text-[#737375] text-lg font-medium font-['Inter'] hover:text-blue-600 transition-colors">
+            Trần Văn A
+          </div>
+  
+          {/* Avatar and Notification Badge */}
+          <div className="w-10 h-10 relative">
+            <img
+              className="w-10 h-10 rounded-full"
+              src="https://via.placeholder.com/48x48"
+              alt="User Avatar"
+            />
+            <div className="w-3 h-3 bg-[#1ecb4f] absolute top-[28px] right-[25px] rounded-full border-2 border-white" />
+          </div>
+  
+          {/* Log Out Icon */}
+          <button
+            onClick={() => alert("Log Out")}
+            className="w-6 h-6 bg-neutral-50 rounded-full flex justify-center items-center hover:bg-blue-100 transition-colors"
+          >
+            <LogOut className="h-5 w-5 text-gray-600 hover:text-blue-600" />
+          </button>
+        </div>
+  
+        {/* Mobile Menu Button */}
+        <div className="md:hidden">
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="text-gray-600 hover:text-blue-600 transition-colors"
+          >
+            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+        </div>
+  
+        {/* Mobile Menu */}
         <div
           className={`md:hidden transition-all duration-300 ease-in-out ${
             isMenuOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0 pointer-events-none"
           }`}
         >
-          <div className="px-2 pt-2 pb-3 space-y-1 bg-white shadow-lg">
-            {navItems.map(({ link, path }) => (
+          <div className="bg-white shadow-lg p-4 space-y-4">
+            <div className="flex flex-col gap-4">
               <Link
-                key={path}
-                to={path}
-                className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-colors"
+                to="/"
+                className="text-gray-600 font-medium hover:text-blue-600 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
-                {link}
+                Trang chủ
               </Link>
-            ))}
-            <div className="flex items-center space-x-4 px-3 py-2">
-              {isCustomer && (
-                <Link
-                  to={`/${userInfo?.username}/cart`}
-                  className="text-gray-600 hover:text-blue-600 transition-colors relative"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  <ShoppingCart className="h-5 w-5" />
-                  {cartItemCount > 0 && (
-                    <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
-                      {cartItemCount}
-                    </span>
-                  )}
-                </Link>
-              )}
-              {isAuthenticated ? (
-                <>
-                  <Link
-                    to={`/${userInfo?.username}/${isCustomer ? "customer" : "employee"}-dashboard`}
-                    className="text-gray-600 hover:text-blue-600 transition-colors"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    <User className="h-5 w-5" />
-                  </Link>
-                  <button
-                    onClick={handleLogout}
-                    className="text-gray-600 hover:text-blue-600 transition-colors"
-                  >
-                    <LogOut className="h-5 w-5" />
-                  </button>
-                </>
-              ) : (
-                <Link
-                  to="/signin"
-                  className="text-gray-600 hover:text-blue-600 transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  <User className="h-5 w-5" />
-                </Link>
-              )}
+              <Link
+                to="/docs"
+                className="text-gray-600 font-medium hover:text-blue-600 transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                In tài liệu
+              </Link>
+              <Link
+                to="/history"
+                className="text-gray-600 font-medium hover:text-blue-600 transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                  Lịch sử hoạt động
+              </Link>
+              <Link
+                to="/buy-paper"
+                className="text-gray-600 font-medium hover:text-blue-600 transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Mua giấy
+              </Link>
+            </div>
+  
+            {/* Mobile User Info */}
+            <div className="flex items-center gap-4">
+              <div className="text-gray-600 text-lg font-medium">Trần Văn A</div>
+              <div className="relative">
+                <img
+                  className="w-12 h-12 rounded-full"
+                  src="https://via.placeholder.com/48x48"
+                  alt="User Avatar"
+                />
+                <div className="w-4 h-4 bg-[#1ecb4f] absolute top-[32px] right-[30px] rounded-full border-2 border-white" />
+              </div>
+              {/* Log Out Icon */}
+              <button
+                onClick={() => alert("Log Out")}
+                className="text-gray-600 hover:text-blue-600 transition-colors"
+              >
+                <LogOut className="h-5 w-5" />
+              </button>
             </div>
           </div>
         </div>
-      </nav>
-    </header>
-  );
-};
-
-export default Navbar;
+      </div>
+    );
+  };
+  export default Navbar;
