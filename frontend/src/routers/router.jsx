@@ -6,7 +6,7 @@ import PrinterManage from '../spso/PrinterManage'
 import PrintHistoryManage from "../spso/PrintHistoryManage";
 const router = createBrowserRouter([
   {
-    path: "/", 
+    path: "/",
     element: <App />,
     children: [
       {
@@ -14,13 +14,9 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/spso/printer",
-        element: <PrinterManage />,
+        path: "/dashboard",
+        element: <Board />,
       },
-      {
-        path: "/spso/print-history",
-        element: <PrintHistoryManage />,
-      }
     ],
   },
 ]);
