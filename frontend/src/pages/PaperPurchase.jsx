@@ -10,8 +10,10 @@ import { useAuth } from "../context/AuthContext";
 const PaperPurchase = () => {
   // State for account balance and paper balance
   const { userInfo, isAuthenticated, isStudent, isSPSO } = useAuth();
-  const [accountBalance, setAccountBalance] = useState(10000); // Starting balance: 10,000
-  const [paperBalance, setPaperBalance] = useState(100); // Starting paper: 100
+  const [accountBalance, setAccountBalance] = useState(
+    userInfo.account_balance
+  ); // Starting balance: 10,000
+  const [paperBalance, setPaperBalance] = useState(userInfo.page_balance); // Starting paper: 100
 
   // State for transaction history
   const [transactions, setTransactions] = useState([
