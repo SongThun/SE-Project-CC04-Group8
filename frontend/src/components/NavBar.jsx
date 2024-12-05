@@ -13,7 +13,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [cartItemCount, setCartItemCount] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
-  const { userInfo, isAuthenticated, isStudent, isSPSO } = useAuth();
+  const { userInfo, isAuthenticated,logout, isStudent, isSPSO } = useAuth();
   console.log("userInfo: ", isSPSO);
   // const userInfo = { username: "danh" };
   // const isAuthenticated = true;
@@ -22,7 +22,8 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    navigate("/signin");
+    logout();
+    navigate("/");
     setIsMenuOpen(false);
   };
 

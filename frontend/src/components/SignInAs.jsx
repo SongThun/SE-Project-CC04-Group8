@@ -27,6 +27,8 @@ const SigninAs = () => {
       const result = await loginFunction(username, pwd);
       if (result.success) {
         navigate(`/${username}`); // Redirect to user's page or dashboard
+      }else{
+        setErrMsg(result.error);
       }
     } catch (error) {
       setErrMsg(error.response?.data?.message || 'Login failed');

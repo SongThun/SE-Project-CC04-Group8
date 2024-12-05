@@ -48,7 +48,12 @@ export const AuthProvider = ({ children }) => {
       console.log("Login response:", response.data);
 
       const { token, user } = response.data;
-
+      if(response.data.message === "Invalid credentials"){
+        return {
+          success: false,
+          error: "Invalid credentials",
+        };
+      }
       if (!token || !user) {
         console.error("Missing token or user_data in response:", response.data);
         throw new Error("Invalid response data");
@@ -86,7 +91,12 @@ export const AuthProvider = ({ children }) => {
       });
 
       const { token, user } = response.data;
-
+      if(response.data.message === "Invalid credentials"){
+        return {
+          success: false,
+          error: "Invalid credentials",
+        };
+      }
       if (!token || !user) {
         console.error("Missing token or user_data in response:", response.data);
         throw new Error("Invalid response data");
