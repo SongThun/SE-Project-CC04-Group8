@@ -79,8 +79,11 @@ export const AuthProvider = ({ children }) => {
       //   password,
       // });
 
-      const response = await api.get("/api/users/getUser");
-      console.log("Login response:", response.data);
+
+      const response = await api.post("/api/spso/signIn", {
+        username,
+        password,
+      });
 
       const { token, user } = response.data;
 

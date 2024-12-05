@@ -49,7 +49,15 @@ const router = createBrowserRouter([
             <ProtectedRoute>
               <PaperPurchase/>
             </ProtectedRoute>
-          }
+          },
+          // {
+          //   path:'management',
+          //   element: (
+          //     <ProtectedRoute allowedRoles={['spso']}>
+          //       <EmployeeDashboard/>
+          //     </ProtectedRoute>
+          //   )
+          // },
         ]
       }
 

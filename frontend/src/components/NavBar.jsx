@@ -14,6 +14,7 @@ const Navbar = () => {
   const [cartItemCount, setCartItemCount] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
   const { userInfo, isAuthenticated, isStudent, isSPSO } = useAuth();
+  console.log("userInfo: ", isSPSO);
   // const userInfo = { username: "danh" };
   // const isAuthenticated = true;
   // const isStudent = true;

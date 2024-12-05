@@ -6,9 +6,10 @@ import PaperBalance from "../components/PaperBalance";
 import NamePage from "../components/NamePage";
 import PayPaperBoard from "../components/PayPaperBoard";
 import TopUpBoard from "../components/TopUpBoard";
-
+import { useAuth } from "../context/AuthContext";
 const PaperPurchase = () => {
   // State for account balance and paper balance
+  const { userInfo, isAuthenticated, isStudent, isSPSO } = useAuth();
   const [accountBalance, setAccountBalance] = useState(10000); // Starting balance: 10,000
   const [paperBalance, setPaperBalance] = useState(100); // Starting paper: 100
 
