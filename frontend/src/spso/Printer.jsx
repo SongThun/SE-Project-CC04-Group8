@@ -26,21 +26,22 @@ const Printer = () => {
     }, []);
 
     // Handle search input change
-    const handleSearch = (e) => {
-        const value = e.target.value;
+    const handleSearch = (event) => {
+        const value = event.target.value;
         setSearchQuery(value);
 
-        // Filter printers based on the search query
+        // Check the search query and filter the printers
         if (value === "") {
-            setFilteredPrinters(printers); // If the search query is empty, show all printers
+            setFilteredPrinters(printers); // If search query is empty, show all printers
         } else {
             const filtered = printers.filter((printer) => {
+                const query = value.toLowerCase();
                 return (
-                    printer.printerId.toLowerCase().includes(value.toLowerCase()) ||
-                    printer.brand.toLowerCase().includes(value.toLowerCase()) ||
-                    printer.location.toLowerCase().includes(value.toLowerCase()) ||
-                    printer.last_updated.toLowerCase().includes(value.toLowerCase()) ||
-                    printer.status.toLowerCase().includes(value.toLowerCase())
+                    printer.printerId.toString().toLowerCase().includes(query) ||
+                    printer.brand.toLowerCase().includes(query) ||
+                    printer.location.toLowerCase().includes(query) ||
+                    printer.last_updated.toLowerCase().includes(query) ||
+                    printer.status.toLowerCase().includes(query)
                 );
             });
             setFilteredPrinters(filtered); // Update the filtered list
@@ -56,7 +57,7 @@ const Printer = () => {
         >
             <Header title="Máy in" />
             {error && <p style={{ color: 'red' }}>{error}</p>}
-            
+
             <div className="w-full mt-6 bg-white rounded-xl py-6">
                 <div className="flex items-center justify-center p-4">
                     <button className="ml-2 p-2 rounded-full hover:bg-blue-600">
@@ -82,21 +83,27 @@ const Printer = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {filteredPrinters.map((p, index) => (
-                                <tr key={index} className="h-[40px] border-b border-gray-50 hover:bg-gray-50">
-                                    <td>{p.printerId}</td>
-                                    <td>{p.brand}</td>
-                                    <td>{p.location}</td>
-                                    <td>{p.last_updated}</td>
-                                    <td className="py-1">
-                                        <button 
-                                            className={`w-32 rounded-xl py-1 text-sm font-semibold ${p.status === "Hoạt động" ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"}`}
-                                        >
-                                            {p.status}
-                                        </button>
-                                    </td>
+                            {filteredPrinters.length === 0 ? (
+                                <tr>
+                                    <td colSpan="5" className="py-4 text-center text-gray-500">No results found</td>
                                 </tr>
-                            ))}
+                            ) : (
+                                filteredPrinters.map((p, index) => (
+                                    <tr key={index} className="h-[40px] border-b border-gray-50 hover:bg-gray-50">
+                                        <td>{p.printerId}</td>
+                                        <td>{p.brand}</td>
+                                        <td>{p.location}</td>
+                                        <td>{p.last_updated}</td>
+                                        <td className="py-1">
+                                            <button 
+                                                className={`w-32 rounded-xl py-1 text-sm font-semibold ${p.status === "Hoạt động" ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"}`}
+                                            >
+                                                {p.status}
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))
+                            )}
                         </tbody>
                     </table>
                 </div>
