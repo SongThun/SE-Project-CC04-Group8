@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const TopUpBoard = ({ accountBalance, setAccountBalance, addTransaction }) => {
+const TopUpBoard = ({ setAccountBalance, addTransaction }) => {
   const [topUpAmount, setTopUpAmount] = useState(0);
   const [isModalVisible, setIsModalVisible] = useState(false);
 

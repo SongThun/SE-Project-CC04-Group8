@@ -27,7 +27,7 @@ const PayPaperBoard = ({
 
       closeModal();
     } else {
-      alert("Số dư tài khoản hoặc số giấy không đủ.");
+      alert("Số dư tài khoản không đủ.");
     }
   };
 
