@@ -86,13 +86,6 @@ const router = createBrowserRouter([
                 </ProtectedRoute>
               },
               { 
-                path: 'layout',
-                element: 
-                <ProtectedRoute allowedRoles={['spso']}>
-                  <Layout/>
-                </ProtectedRoute>
-              },
-              { 
                 path: 'print-history',
                 element: 
                 <ProtectedRoute allowedRoles={['spso']}>

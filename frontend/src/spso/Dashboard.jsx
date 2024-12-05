@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import backgroundImage from '../assets/cse_background.png';
 
 const Dashboard = () => {
@@ -13,7 +13,7 @@ const Dashboard = () => {
       {type: "general", info: "Hóa đơn in"},
       {type: "student", info: "Sinh viên Mã số xxxxx1, đã rút xx"},
       {type: "student", info: "Sinh viên Mã số xxxxx2, đã rút xx"},
-    ])
+    ]);
     fetch('/api/spso/getPrinters?limit=3')
     .then((response) => {
         if (!response.ok) {
@@ -27,18 +27,18 @@ const Dashboard = () => {
     setConfigSchedule([
       {config_name: "Số giấy mặc định", value: "50", datetime: "234234"},
       {config_name: "File type", value: "pdf, txt", datetime: "234234"},
-    ])
-  }, [])
+    ]);
+  }, []);
 
   return (
     <div
-      className="pt-[80px] p-12 h-screen bg-cover bg-center bg-no-repeat"
+      className="p-12 bg-cover bg-center bg-no-repeat overflow-y-auto"
       style={{
         backgroundImage: `url(${backgroundImage})`,
       }}
     >
       <div className="container mx-auto px-4 py-6 max-w-7xl">
-        <div className="grid auto-rows-min gap-6 max-h-screen overflow-y-auto">
+        <div className="grid auto-rows-min gap-6">
           {/* Card thông báo */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <div className="bg-white shadow-md rounded-lg overflow-hidden">
@@ -147,7 +147,7 @@ const Dashboard = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;
