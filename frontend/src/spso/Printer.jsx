@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const PrinterManage = () => {
+const Printer = () => {
     const [printers, setPrinters] = useState([]);
     const [error, setError] = useState(null);
 
@@ -49,4 +49,4 @@ const PrinterManage = () => {
     );
 };
 
-export default PrinterManage;
+export default Printer;

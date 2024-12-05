@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-const PrintHistoryManage = () => {
+const PrintHistory = () => {
     const [printHistory, setPrintHistory] = useState([]);
     const [error, setError] = useState(null);
 
@@ -53,4 +53,4 @@ const PrintHistoryManage = () => {
     );
 }
 
-export default PrintHistoryManage
+export default PrintHistory
