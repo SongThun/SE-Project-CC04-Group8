@@ -32,7 +32,12 @@ const Dashboard = () => {
 
   }, [])
   return (
-      <div className="p-6">
+    <div
+      className="h-screen w-screen bg-cover bg-center bg-no-repeat"
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+      }}
+    >
         <div className="grid auto-rows-min gap-6">
           {/* Card thông báo */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

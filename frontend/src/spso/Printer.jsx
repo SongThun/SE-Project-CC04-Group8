@@ -21,7 +21,12 @@ const Printer = () => {
     }, []);
 
     return (
-				<div className="p-6">
+			<div
+				className="h-screen w-screen bg-cover bg-center bg-no-repeat"
+				style={{
+					backgroundImage: `url(${backgroundImage})`,
+				}}
+			>
             <Header title="Máy in"/>
             {error && <p style={{ color: 'red' }}>{error}</p>}
 						<div className="w-full mt-6 bg-white rounded-xl py-6">
