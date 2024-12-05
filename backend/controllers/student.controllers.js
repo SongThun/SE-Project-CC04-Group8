@@ -11,6 +11,7 @@ const jwt = require('jsonwebtoken');
 const connection = require('../config/database');
 
 
+
 const getAllPrinters = async (req, res) => {
     try {
         const printer = await getPrinters();
@@ -33,5 +34,5 @@ const getAllPrintHistory = async (req, res) => {
 
 module.exports = {
     getAllPrinters,
-    getAllPrintHistory
+    getAllPrintHistory,
 };
