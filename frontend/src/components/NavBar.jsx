@@ -35,9 +35,9 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navItems = [  
+  const navItems = [
     { link: "Trang chủ", path: isAuthenticated ? `/${userInfo.username}/` : "/" },
-    { link: "Cửa hàng", path: isAuthenticated ? `/${userInfo.username}/shop` : "/shop" },
+    // { link: "Cửa hàng", path: isAuthenticated ? `/${userInfo.username}/shop` : "/shop" },
     { link: "In tài liệu", path: "/docs" },
     { link: "Lịch sử hoạt động", path: "/history" },
     { link: "Mua giấy", path: "/buy-paper" },
@@ -45,37 +45,24 @@ const Navbar = () => {
     return (
       <div className="w-full h-[80px] px-4 md:px-8 bg-white shadow border-b border-neutral-100 flex items-center justify-between">
         {/* Logo Section */}
+      <div className="flex items-center">
         <img className="w-[60px] h-[60px]" src={logo} alt="Logo" />
-  
-        {/* Navigation Links Section */}
-        <div className="flex gap-10 flex-1 justify-start items-center">
-          <div className="flex gap-6">
-            <Link
-              to="/"
-              className="text-center text-lg text-[#001038] font-medium hover:text-blue-600 transition-colors"
-            >
-              Trang chủ
-            </Link>
-            <Link
-              to="/docs"
+      </div>
+
+      {/* Navigation Links Section */}
+      <div className="flex gap-10 flex-1 justify-start items-center">
+        <div className="flex gap-6">
+          {navItems.map(({ link, path }) => (
+            <button
+              key={path}
+              onClick={() => navigate(path)}
               className="text-center text-lg text-[#737375] font-medium hover:text-blue-600 transition-colors"
             >
-              In tài liệu
-            </Link>
-            <Link
-              to="/history"
-              className="text-center text-lg text-[#737375] font-medium hover:text-blue-600 transition-colors"
-            >
-              Lịch sử hoạt động
-            </Link>
-            <Link
-              to="/buy-paper"
-              className="text-center text-lg text-[#737375] font-medium hover:text-blue-600 transition-colors"
-            >
-              Mua giấy
-            </Link>
-          </div>
+              {link}
+            </button>
+          ))}
         </div>
+      </div>
   
         {/* User Info Section */}
         <div className="flex items-center gap-4">
