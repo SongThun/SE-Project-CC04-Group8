@@ -8,35 +8,35 @@ const Info: React.FC = () => {
 
       <div className="flex flex-col items-center">
         <Img
-          src="images/img_document_img.png"
+          src="/src/assets/img_document_img.png"
           alt="Document Image"
           className="h-[200px] w-[150px] object-contain"
         />
       </div>
       <div className="flex flex-col items-center">
         <Img
-          src="images/img_document_img.png"
+          src="/src/assets/img_document_img.png"
           alt="Document Image"
           className="h-[200px] w-[150px] object-contain"
         />
       </div>
       <div className="flex flex-col items-center">
         <Img
-          src="images/img_document_img.png"
+          src="/src/assets/img_document_img.png"
           alt="Document Image"
           className="h-[200px] w-[150px] object-contain"
         />
       </div>
       <div className="flex flex-col items-center">
         <Img
-          src="images/img_document_img.png"
+          src="/src/assets/img_document_img.png"
           alt="Document Image"
           className="h-[200px] w-[150px] object-contain"
         />
       </div>
       <div className="flex flex-col items-center">
         <Img
-          src="images/img_document_img.png"
+          src="/src/assets/img_document_img.png"
           alt="Document Image"
           className="h-[200px] w-[150px] object-contain"
         />
