@@ -4,7 +4,8 @@ import type { DatePickerProps } from "antd";
 import { DatePicker, Dropdown, Pagination, Space } from "antd";
 import { DownOutlined, SettingOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
-
+import api from "../../api/api";
+import { set } from "mongoose";
 const onChange: DatePickerProps["onChange"] = (date, dateString) => {
   console.log(date, dateString);
 };
@@ -25,7 +26,21 @@ const items: MenuProps["items"] = [
 ];
 
 const HistoryTable: React.FC = () => {
+  
   const [startDate, setStartDate] = useState(new Date());
+  const [history, setHistory] = useState([]);
+  const fetchHistory = async  () => {
+    // fetch history from backend
+    try{
+    const response = await api.get("api/spso/getPrintHistory");
+    setHistory(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  
+
+
 
   return (
     <div className="w-[75vw]">
