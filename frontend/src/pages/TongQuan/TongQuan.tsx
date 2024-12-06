@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Sidebar1 from "../../components/Sidebar1";
 import { Img } from "../../components/Img";
 import { DownloadOutlined } from "@ant-design/icons";
 import { Button, Divider, Flex, Radio } from "antd";
@@ -19,10 +18,6 @@ export default function TongQuan() {
         </div>
         <div className="flex-1 flex flex-row bg-amber-200">
           {/* Delete BG*/}
-          <div className="flex h-full w-[7.5dw]">
-            {/* Sidebar Here*/}
-            <Sidebar1 />
-          </div>
           <div className="flex-1 flex flex-col bg-green-300">
             <div className="flex h-[84px] w-full bg-violet-800">
               {/* Sap Xep Lai Here*/}

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Img } from "../../components/Img";
-import PhanChonMayIn from "./PhanChonMayIn";
-import Sidebar2 from "../../components/SidebarIn";
 
-export default function ChonMayIn() {
+import PhanTuyChon from "./PhanTuyChon";
+
+export default function TuyChon() {
   const [file, setFile] = useState(null);
   const [fileUrl, setFileUrl] = useState(null);
   const [fileType, setFileType] = useState(null);
@@ -86,7 +86,7 @@ export default function ChonMayIn() {
           <div className="flex h-full w-[664px]">
             {/* Printer Selection Here */}
             <div className="h-full w-[664px] self-center bg-[#f5f5f5] shadow-[0_4px_4px_0_#0000007f]">
-              <PhanChonMayIn />
+              <PhanTuyChon />
             </div>
           </div>
         </div>
