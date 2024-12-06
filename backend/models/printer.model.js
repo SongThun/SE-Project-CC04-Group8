@@ -14,7 +14,7 @@ const printers =  [
     { printerId: 10, brand: "Kyocera", location: "B4-510", last_updated: "2024-12-04 08:45", status: "Hoạt động" },
 ];
 module.exports = {
-    getPrinters : async() => {
+    getPrinters : async(limit) => {
         // try{
         //     const [rows] = await connection.query(`
         //         SELECT * FROM \`user\` LIMIT 10
@@ -24,6 +24,7 @@ module.exports = {
         //     console.log(error);
         //     throw error;
         // }
+        if (limit) return printers.slice(0,limit);
         return printers;
     },
 }

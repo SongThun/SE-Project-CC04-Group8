@@ -25,7 +25,8 @@ const signInStudent = async (req, res) => {
 
 const getAllPrinters = async (req, res) => {
     try {
-        const printer = await getPrinters();
+        const {limit} = req.query;
+        const printer = await getPrinters(limit);
         res.json(printer);
     } catch (error) {
         console.error('Error in getPrinter:', error);

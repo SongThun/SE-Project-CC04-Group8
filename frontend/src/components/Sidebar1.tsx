@@ -1,27 +1,10 @@
 import { Img } from "./Img";
 import React from "react";
-import { MenuItem, Menu, Sidebar, sidebarClasses } from "react-pro-sidebar";
+import { MenuItem, Menu, Sidebar } from "react-pro-sidebar";
 
-interface Props {
-  className?: string;
-}
-
-export default function Sidebar1({ ...props }: Props) {
-  const [collapsed, setCollapsed] = React.useState(false);
-
-  // Function to toggle collapse/expand the sidebar
-  // const collapseSidebar = () => {
-  //   setCollapsed(!collapsed);
-  // };
-
+export default function Sidebar1() {
   return (
-    <Sidebar
-      {...props}
-      width="126px !important"
-      collapsedWidth="80px !important"
-      collapsed={collapsed}
-      className={`hide-scrollbar ${props.className} flex flex-col h-screen pt-2.5 top-0 px-2.5 bg-[#141960] !sticky overflow-auto`}
-    >
+    <Sidebar className="flex flex-col h-[1045px] w-[125px] justify-between bg-[#141960]">
       <Menu
         menuItemStyles={{
           button: {
@@ -35,14 +18,15 @@ export default function Sidebar1({ ...props }: Props) {
             },
           },
         }}
-        className="w-full self-stretch pb-2.5"
+        className="flex flex-col self-stretch"
       >
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col self-stretch items-center justify-center p-2.5 gap-10">
           <MenuItem
+            className="flex flex-col h-[75px] w-[105px]"
             icon={
               <Img
-                src="images/img_pinterest.svg"
-                alt="Pinterest Icon"
+                src="images/img_mayin.svg"
+                alt="May In"
                 className="h-[24px] w-[24px]"
               />
             }
@@ -50,10 +34,11 @@ export default function Sidebar1({ ...props }: Props) {
             Máy in
           </MenuItem>
           <MenuItem
+            className="flex flex-col h-[75px] w-[105px]"
             icon={
               <Img
-                src="images/img_filter.svg"
-                alt="Filter Icon"
+                src="images/img_tuychon.svg"
+                alt="Tuy Chon"
                 className="h-[24px] w-[24px]"
               />
             }
@@ -61,24 +46,25 @@ export default function Sidebar1({ ...props }: Props) {
             Tùy chọn
           </MenuItem>
           <MenuItem
+            className="flex flex-col h-[75px] w-[105px]"
             icon={
               <Img
-                src="images/img_user.svg"
-                alt="User Icon"
+                src="images/img_tongquan.svg"
+                alt="Tong Quan"
                 className="h-[24px] w-[24px]"
               />
             }
           >
             Tổng quan
           </MenuItem>
-        </div>
-        <div className="mt-2.5 h-[666px] bg-[#141960]" />
-        <div>
+          <div className="h-[550px] bg-[#141960]" />
+
           <MenuItem
+            className="flex flex-col h-[75px] w-[105px]"
             icon={
               <Img
-                src="images/img_arrow_down.svg"
-                alt="Arrowdown Icon"
+                src="images/img_trove.svg"
+                alt="Tro Ve"
                 className="h-[24px] w-[24px]"
               />
             }
