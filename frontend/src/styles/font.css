@@ -1,0 +1,59 @@
+/* Inter Fonts */
+@font-face {
+  font-display: swap;
+  font-style: normal;
+  src: url("/public/fonts/InterRegular.ttf");
+  font-family: "Inter";
+  font-weight: 400;
+}
+
+@font-face {
+  font-display: swap;
+  font-style: normal;
+  src: url("/public/fonts/InterMedium.ttf");
+  font-family: "Inter";
+  font-weight: 500;
+}
+
+@font-face {
+  font-display: swap;
+  font-style: normal;
+  src: url("/public/fonts/InterSemiBold.ttf");
+  font-family: "Inter";
+  font-weight: 600;
+}
+
+@font-face {
+  font-display: swap;
+  font-style: normal;
+  src: url("/public/fonts/InterBold.ttf");
+  font-family: "Inter";
+  font-weight: 700;
+}
+
+/* McLaren Font */
+@font-face {
+  font-display: swap;
+  font-style: normal;
+  src: url("/public/fonts/McLarenRegular.ttf");
+  font-family: "McLaren";
+  font-weight: 400;
+}
+
+/* Lato Font */
+@font-face {
+  font-display: swap;
+  font-style: normal;
+  src: url("/public/fonts/LatoRegular.ttf");
+  font-family: "Lato";
+  font-weight: 400;
+}
+
+/* Roboto Font */
+@font-face {
+  font-display: swap;
+  font-style: normal;
+  src: url("/public/fonts/RobotoRegular.ttf");
+  font-family: "Roboto";
+  font-weight: 400;
+}
