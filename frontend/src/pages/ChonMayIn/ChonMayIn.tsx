@@ -5,14 +5,14 @@ import Sidebar1 from "../../components/Sidebar1";
 
 export default function ChonMayIn() {
   return (
-    <div className="flex h-screen w-screen bg-black">
-      <div className="flex flex-col h-[1117px] w-[1735px] bg-[#AAB1D1]">
-        <div className="flex h-[82px] w-[1735] bg-red-500">
+    <div className="flex h-screen w-screen bg-[#AAB1D1]">
+      <div className="flex flex-col h-screen w-screen bg-[#AAB1D1]">
+        <div className="flex h-[10vh] w-[100vw] bg-red-500">
           {/* Header Here */}
         </div>
-        <div className="flex-1 flex flex-row bg-amber-200">
+        <div className="flex-1 flex flex-row">
           {/* Delete BG*/}
-          <div className="flex h-full w-[125px]">
+          <div className="flex h-full">
             {/* Sidebar Here*/}
             <Sidebar1 />
           </div>
@@ -20,7 +20,7 @@ export default function ChonMayIn() {
             {/* Picture Here*/}
             <div className="flex-1 flex flex-col items-center justify-center">
               <Img
-                src="images/img_document_img.png"
+                src="/src/assets/img_document_img.png"
                 alt="Document Image"
                 className="h-[514px] w-[38%] object-contain"
               />

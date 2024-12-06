@@ -28,8 +28,8 @@ const HistoryTable: React.FC = () => {
   const [startDate, setStartDate] = useState(new Date());
 
   return (
-    <div className="w-full">
-      <div className="flex flex-row w-full h-[65px] bg-white items-center p-6 justify-between rounded-t-xl">
+    <div className="w-[75vw]">
+      <div className="flex flex-row w-full h-[55px] bg-white items-center p-6 justify-between rounded-t-xl">
         <div className="flex flex-row gap-4">
           <span className="text-[16px] font-bold text-[#001038] text-opacity-85">
             Lịch sử in
@@ -57,7 +57,7 @@ const HistoryTable: React.FC = () => {
       </div>
       <table className="w-full table-auto bg-white border-collapse shadow-md rounded-lg">
         {/* Table Header */}
-        <thead className="h-[65px] bg-gray-100">
+        <thead className="h-[55px] bg-gray-100">
           <tr>
             <th className="text-left p-3 text-[16px] font-medium text-[#737375]">
               ID
@@ -92,7 +92,6 @@ const HistoryTable: React.FC = () => {
         {/* Table Body */}
         <tbody>
           {/* Example Row */}
-          <TableRow />
           <TableRow />
           <TableRow />
           <TableRow />

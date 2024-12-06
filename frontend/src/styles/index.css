@@ -104,7 +104,7 @@ input:focus {
 }
 
 .ps-sidebar-container {
-  width: 125px !important;
+  width: 7.5vw !important;
 }
 ,
 .ps-menu-root,
@@ -115,6 +115,7 @@ input:focus {
 }
 
 .ps-sidebar-root {
+  width: 7.5vw !important;
   min-width: unset !important;
 }
 

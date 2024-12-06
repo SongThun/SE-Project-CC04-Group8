@@ -18,7 +18,7 @@ export default function PhanChonMayIn() {
   const [size, setSize] = useState<SizeType>("large");
   return (
     <>
-      <div className="flex flex-col h-full w-[664px] items-center justify-center gap-5 p-14">
+      <div className="flex flex-col h-full items-center justify-center gap-5 p-14">
         <div className="flex flex-row w-full items-start">
           <span className="text-[32px] font-normal font-['Lato'] text-[#000000]">
             Lựa chọn máy in:
@@ -35,7 +35,7 @@ export default function PhanChonMayIn() {
 
           <div className="flex items-center gap-2.5 p-2.5 sm:flex-row">
             <Img
-              src="images/img_mayin2.svg"
+              src="/src/assets/img_mayin2.svg"
               alt="Tuy Chon"
               className="h-[24px] w-[24px]"
             />
@@ -46,7 +46,7 @@ export default function PhanChonMayIn() {
 
           <div className="flex items-center gap-2.5 p-2.5 sm:flex-row">
             <Img
-              src="images/img_mayin2.svg"
+              src="/src/assets/img_mayin2.svg"
               alt="Tuy Chon"
               className="h-[24px] w-[24px]"
             />
@@ -58,7 +58,7 @@ export default function PhanChonMayIn() {
 
           <div className="flex items-center gap-2.5 p-2.5 sm:flex-row">
             <Img
-              src="images/img_mayin2.svg"
+              src="/src/assets/img_mayin2.svg"
               alt="Tuy Chon"
               className="h-[24px] w-[24px]"
             />
