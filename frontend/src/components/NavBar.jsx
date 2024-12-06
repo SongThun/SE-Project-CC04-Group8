@@ -39,7 +39,7 @@ const Navbar = () => {
   const navItems = [
     { link: "Trang chủ", path: isAuthenticated ? `/${userInfo.username}` : "/" },
     ...(isSPSO ? [{ link: "Quản lý", path: `/${userInfo.username}/spso` }] : []),
-    { link: "In tài liệu", path: `/${userInfo.username}/docs` },
+    { link: "In tài liệu", path: `/${userInfo.username}/select-printer` },
     { link: "Lịch sử hoạt động", path: `/${userInfo.username}/history` },
     { link: "Mua giấy", path: `/${userInfo.username}/PaperPurchase` },
   ];

@@ -21,10 +21,12 @@
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.7.1",
     "@fortawesome/react-fontawesome": "^0.2.2",
+    "antd": "^5.22.3",
     "axios": "^1.7.9",
     "fortawesome": "^0.0.1-security",
     "frontend": "file:",
     "lucide-react": "^0.465.0",
+    "react-pro-sidebar": "^1.1.0",
     "react-router-dom": "^7.0.0",
     "watch": "^0.13.0"
   }

@@ -14,6 +14,9 @@ import { useAuth } from "../context/AuthContext";
 import SigninAs from "../components/SignInAs";
 import Navbar from "../components/NavBar";
 import SidebarSPSO from "../components/SideBarSPSO";
+import LichSuIn from "../pages/LichSuIn/LichSuIn";
+import TongQuan from "../pages/TongQuan/TongQuan";
+import ChonMayIn from "../pages/ChonMayIn/ChonMayIn";
 const AuthenticatedLayout = ({children}) => {
   const{userInfo} = useAuth();
   return (
@@ -93,6 +96,27 @@ const router = createBrowserRouter([
               },
             ]
           },
+          {
+            path: 'history',
+            element:
+            <ProtectedRoute>
+              <LichSuIn/>
+            </ProtectedRoute>
+          },
+          {
+            path: 'overview',
+            element:
+            <ProtectedRoute>
+              <TongQuan/>
+            </ProtectedRoute>
+          },
+          {
+            path: 'select-printer',
+            element:
+            <ProtectedRoute>
+              <ChonMayIn/>
+            </ProtectedRoute>
+          }
         ]
       }
 
