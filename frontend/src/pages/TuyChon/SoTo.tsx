@@ -38,7 +38,15 @@ const SoTo = () => {
 
   return (
     <Dropdown menu={menuProps}>
-      <Button size="large" style={{ fontSize: "16px", padding: "12px 24px" }}>
+      <Button
+        size="large"
+        style={{
+          fontSize: "16px",
+          padding: "12px 24px",
+          height: "40px",
+          width: "200px",
+        }}
+      >
         {" "}
         {/* Set the button size to large */}
         <Space>

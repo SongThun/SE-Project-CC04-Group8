@@ -1,45 +1,36 @@
 import React from "react";
+import { Card, Typography } from "antd";
 import { Img } from "../../components/Img";
+
+const { Title } = Typography;
 
 const Info: React.FC = () => {
   return (
-    <div className="flex flex-col h-[961px] w-[260px] p-5 gap-10 bg-[#E5EEFF] item-center overflow-auto">
+    <div className="flex flex-col max-h-[1000px] w-[260px] p-5 gap-10 bg-[#E5EEFF] overflow-auto">
+      <Title level={3} className="text-center text-[#003366] mb-6">
+        Document Gallery
+      </Title>
       {/* Content inside the scrollable container */}
-
-      <div className="flex flex-col items-center">
-        <Img
-          src="/src/assets/img_document_img.png"
-          alt="Document Image"
-          className="h-[200px] w-[150px] object-contain"
-        />
-      </div>
-      <div className="flex flex-col items-center">
-        <Img
-          src="/src/assets/img_document_img.png"
-          alt="Document Image"
-          className="h-[200px] w-[150px] object-contain"
-        />
-      </div>
-      <div className="flex flex-col items-center">
-        <Img
-          src="/src/assets/img_document_img.png"
-          alt="Document Image"
-          className="h-[200px] w-[150px] object-contain"
-        />
-      </div>
-      <div className="flex flex-col items-center">
-        <Img
-          src="/src/assets/img_document_img.png"
-          alt="Document Image"
-          className="h-[200px] w-[150px] object-contain"
-        />
-      </div>
-      <div className="flex flex-col items-center">
-        <Img
-          src="/src/assets/img_document_img.png"
-          alt="Document Image"
-          className="h-[200px] w-[150px] object-contain"
-        />
+      <div className="flex flex-col items-center gap-6">
+        {[...Array(5)].map((_, index) => (
+          <Card
+            key={index}
+            hoverable
+            bordered={false}
+            className="w-full max-w-[220px] justify-between items rounded-lg shadow-lg"
+            cover={
+              <Img
+                src="/src/assets/img_document_img.png"
+                alt="Document Image"
+                className="w-full object-cover"
+              />
+            }
+          >
+            <div className="text-center text-[#003366] font-bold">
+              Page #{index + 1}
+            </div>
+          </Card>
+        ))}
       </div>
     </div>
   );

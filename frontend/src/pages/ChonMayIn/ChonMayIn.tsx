@@ -1,96 +1,103 @@
 import React, { useState } from "react";
-import { Img } from "../../components/Img";
+import { Upload, Button, Typography, Space, message } from "antd";
+import { InboxOutlined } from "@ant-design/icons";
 import PhanChonMayIn from "./PhanChonMayIn";
 import Sidebar2 from "../../components/SidebarIn";
+
+const { Title, Text } = Typography;
 
 export default function ChonMayIn() {
   const [file, setFile] = useState(null);
   const [fileUrl, setFileUrl] = useState(null);
   const [fileType, setFileType] = useState(null);
 
-  const handleFileChange = (e) => {
-    const selectedFile = e.target.files[0];
+  const handleFileChange = (info) => {
+    const selectedFile = info.fileList[0];
     if (selectedFile) {
-      setFile(selectedFile);
+      setFile(selectedFile.originFileObj);
       setFileType(selectedFile.type);
       const reader = new FileReader();
       reader.onloadend = () => {
-        setFileUrl(reader.result); // Set the URL to display the file
+        setFileUrl(reader.result);
       };
-      reader.readAsDataURL(selectedFile); // Read the file as a data URL
+      reader.readAsDataURL(selectedFile.originFileObj);
     }
   };
 
   const renderPreview = () => {
     if (!fileUrl) {
       return (
-        <p className="text-[16px] text-[#aab1d1]">
-          No file selected for preview
-        </p>
+        <Text className="text-gray-500">No file selected for preview</Text>
       );
     }
 
     if (fileType.includes("image")) {
-      // If the file is an image
       return (
         <img
           src={fileUrl}
           alt="Preview"
-          className="h-[514px] w-[38%] object-contain"
+          className="w-full max-w-[80%] max-h-[500px] object-contain"
         />
       );
     }
 
     if (fileType.includes("pdf")) {
-      // If the file is a PDF
       return (
         <iframe
           src={fileUrl}
           title="PDF Preview"
-          className="h-[514px] w-[80%] border"
+          className="w-full h-[500px] border-2 rounded-lg"
         ></iframe>
       );
     }
 
-    return (
-      <p className="text-[16px] text-[#aab1d1]">Unsupported file format</p>
-    );
+    return <Text className="text-red-500">Unsupported file format</Text>;
   };
 
-  console.log("ChonMayIn");
   return (
-    <div className="flex h-screen w-screen">
-      <div className="flex flex-col h-screen w-screen">
-        <div className="flex-1 flex flex-row">
-          <div className="flex-1 flex flex-col bg-[#F2F6FF]">
-            {/* File Preview Here */}
-            <div className="flex-1 flex flex-col items-center justify-center">
-              {renderPreview()}
-              <div className="flex justify-center self-stretch p-3">
-                <span className="text-[16px] font-medium text-[#aab1d1]">
-                  {file
-                    ? `${file.name} (${(file.size / 1024).toFixed(2)} kB)`
-                    : "No file selected"}
-                </span>
-              </div>
-              <div className="flex justify-center p-3">
-                <input
-                  type="file"
-                  accept="image/*,application/pdf"
-                  onChange={handleFileChange}
-                  className="p-2 bg-[#e1e5f2] rounded-md"
-                />
-              </div>
-            </div>
-          </div>
-          <div className="flex h-full w-[664px]">
-            {/* Printer Selection Here */}
-            <div className="h-full w-[664px] self-center bg-[#f5f5f5] shadow-[0_4px_4px_0_#0000007f]">
-              <PhanChonMayIn />
-            </div>
+    <section className="flex-1 flex flex-col bg-[#F2F6FF]">
+      <div className="flex h-[80px] w-full bg-black">{/* Delete This */}</div>
+      <section className="flex-1 flex flex-row bg-[#F2F6FF] justify-end">
+        <div className="flex-1 p-8 bg-[#f2f6ff] rounded-lg">
+          <div className="flex flex-col items-center justify-center space-y-6">
+            {renderPreview()}
+            <Space
+              direction="vertical"
+              size={16}
+              className="w-full text-center"
+            >
+              <Text className="text-gray-600">
+                {file
+                  ? `${file.name} (${(file.size / 1024).toFixed(2)} kB)`
+                  : "No file selected"}
+              </Text>
+              <Upload
+                customRequest={() => {}}
+                onChange={handleFileChange}
+                showUploadList={false}
+                accept="image/*,application/pdf"
+              >
+                <Button
+                  icon={<InboxOutlined />}
+                  type="primary"
+                  block
+                  size="large"
+                  className="border-2 border-[#0050b3] hover:bg-[#0050b3] text-white"
+                >
+                  Upload File
+                </Button>
+              </Upload>
+              <Text className="text-sm text-[#aab1d1]">
+                Supported formats: JPG, PNG, PDF
+              </Text>
+            </Space>
           </div>
         </div>
-      </div>
-    </div>
+
+        <div className="flex h-full w-[650px] p-8 bg-[#f5f5f5]  justify-center items-center shadow-lg">
+          <PhanChonMayIn />
+        </div>
+      </section>
+    </section>
   );
 }
