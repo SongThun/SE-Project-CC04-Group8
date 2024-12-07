@@ -3,7 +3,7 @@ import React from "react";
 const SoToA3DaIn = () => {
   return (
     <div>
-      <div className="flex flex-row h-[96px] w-[500px] items-center rounded-xl bg-white p-6 text-black gap-4">
+      <div className="flex flex-row h-[10vh] w-[23vw] items-center rounded-xl bg-white p-6 text-black gap-4">
         <div className="flex h-[56px] w-[56px] rounded-full  items-center justify-center bg-[#1488DB] bg-opacity-25">
           <svg
             fill="#000000"
@@ -31,7 +31,7 @@ const SoToA3DaIn = () => {
           </div>
 
           <div>
-            <span className="text-[32px] font-bold">15 tờ</span>
+            <span className="text-[24px] font-bold">15 tờ</span>
           </div>
         </div>
       </div>

@@ -2,7 +2,6 @@ import { Navigate, useLocation, useParams } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 export const ProtectedRoute = ({children, allowedRoles}) => {
-    console.log("ADWDAd")
     const {userInfo, isAuthenticated, loading} = useAuth();
     const params = useParams();
     const location = useLocation();

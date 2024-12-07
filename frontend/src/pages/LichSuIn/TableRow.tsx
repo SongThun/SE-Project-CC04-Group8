@@ -22,7 +22,7 @@ const TableRow: React.FC<RowData> = ({
   paperType = "A4",
 }) => {
   return (
-    <tr className="h-[65px] border-b border-gray-200">
+    <tr className="h-[55px] border-b border-gray-200">
       <td className="p-3 text-[16px] text-gray-700">{id}</td>
       <td className="p-3 text-sm text-gray-700">{date}</td>
       <td className="p-3 text-sm text-gray-700">{printerId}</td>
