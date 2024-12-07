@@ -19,6 +19,7 @@ import TongQuan from "../pages/TongQuan/TongQuan";
 import ChonMayIn from "../pages/ChonMayIn/ChonMayIn";
 import SidebarIn from "../components/SidebarIn";
 import TuyChon from "../pages/TuyChon/TuyChon";
+import {FileProvider} from "../pages/utils/FileHolder";
 const AuthenticatedLayout = ({children}) => {
   const{userInfo} = useAuth();
   return (
@@ -110,7 +111,9 @@ const router = createBrowserRouter([
             path: 'select-printer',
             element:
             <ProtectedRoute>
+              <FileProvider>
               <SidebarIn/>
+              </FileProvider>
             </ProtectedRoute>,
             children:[
               {

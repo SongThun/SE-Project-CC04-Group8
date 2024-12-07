@@ -30,7 +30,7 @@ const Sidebar = () => {
         <div className="flex items-center justify-center h-20 border-b border-gray-700"></div>
 
         {/* Profile Section */}
-        <div className="flex flex-col items-center py-4 border-b border-gray-700">
+        {/* <div className="flex flex-col items-center py-4 border-b border-gray-700">
           <Avatar
             size={100}
             icon={<UserOutlined style={{ fontSize: "56px" }} />}
@@ -40,7 +40,7 @@ const Sidebar = () => {
             }}
           />
           <div className="text-xl font-medium text-white">John Doe</div>
-        </div>
+        </div> */}
 
         {/* Menu */}
         <Menu
