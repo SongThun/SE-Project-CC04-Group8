@@ -34,7 +34,7 @@ const Dashboard = () => {
 
   return (
     <div
-      className="p-8 bg-cover bg-center bg-no-repeat overflow-y-auto"
+      className="p-8 min-h-screen w-full bg-fixed bg-cover bg-no-repeat overflow-y-auto"
       style={{
         backgroundImage: `url(${backgroundImage})`,
       }}
