@@ -232,12 +232,12 @@ const PrintHistory = () => {
             id="search-bar"
             className="w-1/2 flex items-center justify-center p-4"
           >
-            <button className="ml-2 p-2 rounded-full hover:bg-blue-600">
-              <Search />
+            <button className="ml-2 py-1 px-2 rounded-full hover:bg-blue-600">
+              <Search size={15}/>
             </button>
             <input
               type="text"
-              className="w-full px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-1 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Search..."
               value={searchQuery}
               onChange={handleSearch}
@@ -247,8 +247,8 @@ const PrintHistory = () => {
 
         <div className="overflow-y-auto max-h-[calc(100vh-150px)]">
           {content === "print-log" && (
-            <table className="mt-6 min-w-full text-center">
-              <thead className="bg-gray-100 h-[40px] font-semibold text-gray-500">
+            <table className="table-fixed min-w-full text-center">
+              <thead className="sticky top-0 bg-gray-100 h-[40px] font-semibold text-gray-500">
                 <tr>
                   <th>StudentID</th>
                   <th>PrinterID</th>
