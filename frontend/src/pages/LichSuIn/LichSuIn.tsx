@@ -7,8 +7,8 @@ import SoToA3DaIn from "./SoToA3DaIn";
 
 const LichSuIn = () => {
   return (
-    <div className="flex h-screen w-screen flex-col justify-center items-center bg-[url('/public/images/cse_background.png')] bg-cover bg-no-repeat">
-      <div className="flex flex-col h-[800px] w-[1600px] items-center gap-6">
+    <div className="flex h-screen w-screen flex-col justify-center items-center bg-[url('/src/assets/cse_background.png')] bg-cover bg-no-repeat">
+      <div className="flex flex-col items-center gap-6">
         <div>
           <TieuDe />
         </div>

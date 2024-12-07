@@ -12,14 +12,14 @@ export default function TongQuan() {
   const [size, setSize] = useState<SizeType>("large"); // default is 'middle'
 
   return (
-    <div className="flex h-screen w-screen bg-black">
-      <div className="flex flex-col h-[1117px] w-[1735px] bg-[#AAB1D1]">
+    <div className="flex h-screen w-screen bg-[#AAB1D1]">
+      <div className="flex flex-col h-screen w-screen bg-[#AAB1D1]">
         <div className="flex h-[82px] w-[1735] bg-red-500">
           {/* Header Here */}
         </div>
         <div className="flex-1 flex flex-row bg-amber-200">
           {/* Delete BG*/}
-          <div className="flex h-full w-[125px]">
+          <div className="flex h-full w-[7.5dw]">
             {/* Sidebar Here*/}
             <Sidebar1 />
           </div>
@@ -29,7 +29,7 @@ export default function TongQuan() {
               <div className="flex flex-row h-[84px] w-full items-center justify-between bg-[#ffffff] p-2.5">
                 <div className="flex flex-row items-center gap-2.5">
                   <Img
-                    src="images/img_sapxeplai.svg"
+                    src="/src/assets/img_sapxeplai.svg"
                     alt="Sap Xep Lai"
                     className="h-[24px] w-[24px]"
                   />
@@ -52,7 +52,7 @@ export default function TongQuan() {
                 {/* Picture Herer*/}
                 <div className="flex-1 flex flex-col items-center justify-center">
                   <Img
-                    src="images/img_document_img.png"
+                    src="/src/assets/img_document_img.png"
                     alt="Document Image"
                     className="h-[868px] w-[48%] object-contain"
                   />
