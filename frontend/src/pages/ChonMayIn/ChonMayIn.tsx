@@ -58,7 +58,7 @@ export default function ChonMayIn() {
     <section className="flex-1 flex flex-col bg-[#F2F6FF]">
       <div className="flex h-[80px] w-full bg-black">{/* Delete This */}</div>
       <section className="flex-1 flex flex-row bg-[#F2F6FF] justify-end">
-        <div className="flex-1 p-8 bg-[#f2f6ff] rounded-lg">
+        <div className="flex-1 p-8 bg-[#F2F6FF] rounded-lg">
           <div className="flex flex-col items-center justify-center space-y-6">
             {renderPreview()}
             <Space

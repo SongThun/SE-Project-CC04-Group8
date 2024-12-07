@@ -17,7 +17,7 @@ import SidebarSPSO from "../components/SideBarSPSO";
 import LichSuIn from "../pages/LichSuIn/LichSuIn";
 import TongQuan from "../pages/TongQuan/TongQuan";
 import ChonMayIn from "../pages/ChonMayIn/ChonMayIn";
-import Sidebar2 from "../components/SidebarIn";
+import SidebarIn from "../components/SidebarIn";
 import TuyChon from "../pages/TuyChon/TuyChon";
 const AuthenticatedLayout = ({children}) => {
   const{userInfo} = useAuth();
@@ -110,7 +110,7 @@ const router = createBrowserRouter([
             path: 'select-printer',
             element:
             <ProtectedRoute>
-              <Sidebar2/>
+              <SidebarIn/>
             </ProtectedRoute>,
             children:[
               {
