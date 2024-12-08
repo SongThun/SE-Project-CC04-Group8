@@ -55,7 +55,7 @@ export default function ChonMayIn() {
   };
 
   return (
-    <section className="flex-1 flex flex-row bg-[#F2F6FF] justify-end">
+    <section className="flex-1 flex flex-row h-full bg-[#F2F6FF] justify-end">
       <div className="flex-1 p-8 bg-[#F2F6FF] rounded-lg">
         <div className="flex flex-col items-center justify-center space-y-6">
           {renderPreview()}

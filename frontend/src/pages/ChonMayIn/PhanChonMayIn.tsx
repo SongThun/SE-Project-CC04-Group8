@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Img } from "../../components/Img";
 import { Input, Button } from "antd";
+import { useNavigate } from "react-router-dom"; // Import useNavigate from react-router-dom
 import type { GetProps } from "antd";
 import type { ConfigProviderProps } from "antd";
 import api from "../../api/api";
@@ -20,6 +21,8 @@ export default function PhanChonMayIn() {
   const [selectedPrinter, setSelectedPrinter] = useState<string | null>(null);
   const [location, setLocation] = useState<string>("");
   const [status, setStatus] = useState<string>("");
+
+  const navigate = useNavigate(); // Initialize the navigate function
 
   // Fetch printer data from the database (using the provided printers array)
   const fetchPrinters = async () => {
@@ -51,6 +54,11 @@ export default function PhanChonMayIn() {
       setLocation(selected.location); // Set the location
       setStatus(selected.status); // Set the status
     }
+  };
+
+  // Handle button click to navigate to another page
+  const handleNavigate = () => {
+    navigate("selection"); // Replace "/new-page" with your desired route
   };
 
   return (
