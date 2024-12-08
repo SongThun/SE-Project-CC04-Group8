@@ -10,7 +10,7 @@ const Signin = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-red-500">
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white shadow-lg rounded-lg max-w-sm w-full p-6">
         <img src={logo} alt="logo" className="w-24 mx-auto" />
         <h1 className="text-2xl font-bold text-center text-blue-800 mb-6">Hệ thống in ấn HCMUT</h1>
