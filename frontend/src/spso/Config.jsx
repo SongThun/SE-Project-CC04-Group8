@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
-import backgroundImage from "../assets/cse_background.png"
+import backgroundImage from "../assets/cse_background.png";
 import { Search } from "lucide-react";
 
 const Config = () => {
@@ -34,27 +34,29 @@ const Config = () => {
       name: "Kích thước giấy hỗ trợ",
       value: "A4, A3",
       date: "2025-01-05",
-    }
+    },
   ]);
   const [error, setError] = useState(null);
 
   const [isEditing, setIsEditing] = useState(null);
   const [editValue, setEditValue] = useState({
     value: "",
-    date: ""
+    date: "",
   });
 
   const handleEdit = (name, currentValue, currentDate) => {
     setIsEditing(name);
     setEditValue({
       value: currentValue,
-      date: currentDate
+      date: currentDate,
     });
   };
 
   const handleSave = (name) => {
     const updatedConfigurations = config.map((cf) =>
-      cf.name === name ? { ...cf, value: editValue.value, date: editValue.date } : cf
+      cf.name === name
+        ? { ...cf, value: editValue.value, date: editValue.date }
+        : cf
     );
     setConfig(updatedConfigurations);
 
@@ -67,34 +69,41 @@ const Config = () => {
 
   return (
     <div
-      className="p-8 bg-cover bg-center bg-no-repeat overflow-y-auto"
+      className="p-8 min-h-screen w-full bg-fixed bg-cover bg-no-repeat overflow-y-auto"
       style={{
         backgroundImage: `url(${backgroundImage})`,
       }}
     >
       <Header title="Cấu hình" />
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {error && <p style={{ color: "red" }}>{error}</p>}
       <div className="w-full mt-6 bg-white rounded-xl py-6">
         <table className="min-w-full text-center">
           <thead className="bg-gray-100 h-[40px] font-semibold text-gray-500">
             <tr>
               <th>Cấu hình</th>
-              <th className="w-1/4">Thông tin</th> {/* Fixed width for "Thông tin" */}
+              <th className="w-1/4">Thông tin</th>{" "}
+              {/* Fixed width for "Thông tin" */}
               <th>Có hiệu lực từ</th>
               <th className="w-2/12"></th>
             </tr>
           </thead>
           <tbody>
             {config.map((cf, index) => (
-              <tr key={index} className="h-[40px] border-b border-gray-50 hover:bg-gray-50">
+              <tr
+                key={index}
+                className="h-[40px] border-b border-gray-50 hover:bg-gray-50"
+              >
                 <td className="text-left pl-10">{cf.name}</td>
-                <td className="w-1/4 overflow-hidden text-ellipsis whitespace-nowrap">{/* Truncate text */}
+                <td className="w-1/4 overflow-hidden text-ellipsis whitespace-nowrap">
+                  {/* Truncate text */}
                   {isEditing === cf.name ? (
                     <input
                       type="text"
                       className="w-full border border-gray-400 rounded px-2"
                       value={editValue.value}
-                      onChange={(e) => setEditValue({ ...editValue, value: e.target.value })}
+                      onChange={(e) =>
+                        setEditValue({ ...editValue, value: e.target.value })
+                      }
                     />
                   ) : (
                     cf.value
@@ -106,7 +115,9 @@ const Config = () => {
                       type="date"
                       className="w-full border border-gray-400 rounded px-2"
                       value={editValue.date}
-                      onChange={(e) => setEditValue({ ...editValue, date: e.target.value })}
+                      onChange={(e) =>
+                        setEditValue({ ...editValue, date: e.target.value })
+                      }
                     />
                   ) : (
                     cf.date

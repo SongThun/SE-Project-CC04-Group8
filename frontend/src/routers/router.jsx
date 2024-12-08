@@ -17,6 +17,9 @@ import SidebarSPSO from "../components/SideBarSPSO";
 import LichSuIn from "../pages/LichSuIn/LichSuIn";
 import TongQuan from "../pages/TongQuan/TongQuan";
 import ChonMayIn from "../pages/ChonMayIn/ChonMayIn";
+import SidebarIn from "../components/SidebarIn";
+import TuyChon from "../pages/TuyChon/TuyChon";
+import {FileProvider} from "../pages/utils/FileHolder";
 const AuthenticatedLayout = ({children}) => {
   const{userInfo} = useAuth();
   return (
@@ -103,19 +106,38 @@ const router = createBrowserRouter([
               <LichSuIn/>
             </ProtectedRoute>
           },
-          {
-            path: 'overview',
-            element:
-            <ProtectedRoute>
-              <TongQuan/>
-            </ProtectedRoute>
-          },
+
           {
             path: 'select-printer',
             element:
             <ProtectedRoute>
-              <ChonMayIn/>
-            </ProtectedRoute>
+              <FileProvider>
+              <SidebarIn/>
+              </FileProvider>
+            </ProtectedRoute>,
+            children:[
+              {
+                path: '',
+                element:
+                <ProtectedRoute>
+                  <ChonMayIn/>
+              </ProtectedRoute>,
+              },
+              {
+                path: 'selection',
+                element:
+                <ProtectedRoute>
+                  <TuyChon/>
+                </ProtectedRoute>
+              },
+              {
+                path: 'overview',
+                element:
+                <ProtectedRoute>
+                  <TongQuan/>
+                </ProtectedRoute>
+              },
+            ]
           }
         ]
       }

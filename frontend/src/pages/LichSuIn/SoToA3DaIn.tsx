@@ -1,10 +1,33 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import api from "../../api/api";
 
 const SoToA3DaIn = () => {
+  const [history, setHistory] = useState([]);
+
+  // Fetch history from the backend
+  const fetchHistory = async () => {
+    try {
+      const response = await api.get("api/spso/getPrintHistory");
+      setHistory(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  // Count the number of A3 pages
+  const countA3Pages = () => {
+    return history.filter((item) => item.page_size === "A3").length;
+  };
+
+  // Fetch history on component mount
+  useEffect(() => {
+    fetchHistory();
+  }, []);
+
   return (
     <div>
-      <div className="flex flex-row h-[96px] w-[500px] items-center rounded-xl bg-white p-6 text-black gap-4">
-        <div className="flex h-[56px] w-[56px] rounded-full  items-center justify-center bg-[#1488DB] bg-opacity-25">
+      <div className="flex flex-row h-[10vh] w-[23vw] items-center rounded-xl bg-white p-6 text-black gap-4">
+        <div className="flex h-[56px] w-[56px] rounded-full items-center justify-center bg-[#1488DB] bg-opacity-25">
           <svg
             fill="#000000"
             height="28px"
@@ -31,7 +54,7 @@ const SoToA3DaIn = () => {
           </div>
 
           <div>
-            <span className="text-[32px] font-bold">15 tờ</span>
+            <span className="text-[24px] font-bold">{countA3Pages()} tờ</span>
           </div>
         </div>
       </div>

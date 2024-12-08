@@ -1,66 +1,51 @@
 import React, { useState } from "react";
-import Sidebar1 from "../../components/Sidebar1";
-import { Img } from "../../components/Img";
+import { Button } from "antd";
 import { DownloadOutlined } from "@ant-design/icons";
-import { Button, Divider, Flex, Radio } from "antd";
-import type { ConfigProviderProps } from "antd";
+import { useFile } from "../utils/FileHolder";  // Importing useFile
 import Info from "./Info";
+import { Img } from "../../components/Img";
 
 type SizeType = ConfigProviderProps["componentSize"];
 
 export default function TongQuan() {
-  const [size, setSize] = useState<SizeType>("large"); // default is 'middle'
+  const { displayUpload, renderPreview, file, fileType } = useFile();  // Using useFile hook to manage file upload and preview
+  const [size, setSize] = useState<SizeType>("large");
 
   return (
-    <div className="flex h-screen w-screen bg-black">
-      <div className="flex flex-col h-[1117px] w-[1735px] bg-[#AAB1D1]">
-        <div className="flex h-[82px] w-[1735] bg-red-500">
-          {/* Header Here */}
-        </div>
-        <div className="flex-1 flex flex-row bg-amber-200">
-          {/* Delete BG*/}
-          <div className="flex h-full w-[125px]">
-            {/* Sidebar Here*/}
-            <Sidebar1 />
+    <div className="flex-1 flex flex-col h-full bg-[#AAB1D1]">
+      {/* Sap Xep Lai*/}
+      <section className="flex h-[84px] w-full">
+        <div className="flex flex-row h-full w-full items-center justify-between bg-white p-2.5">
+          {/* Change Color */}
+          <div className="flex items-center gap-2.5">
+            <Img
+              src="/src/assets/img_sapxeplai.svg"
+              alt="Sap Xep Lai"
+              className="h-[24px] w-[24px]"
+            />
+            <span className="text-[32px] font-medium text-gray-800">
+              Sắp xếp lại
+            </span>
           </div>
-          <div className="flex-1 flex flex-col bg-green-300">
-            <div className="flex h-[84px] w-full bg-violet-800">
-              {/* Sap Xep Lai Here*/}
-              <div className="flex flex-row h-[84px] w-full items-center justify-between bg-[#ffffff] p-2.5">
-                <div className="flex flex-row items-center gap-2.5">
-                  <Img
-                    src="images/img_sapxeplai.svg"
-                    alt="Sap Xep Lai"
-                    className="h-[24px] w-[24px]"
-                  />
+          <Button type="primary" icon={<DownloadOutlined />} size={size}>
+            In
+          </Button>
+        </div>
+      </section>
 
-                  <span className="text-[32px] font-medium font-['Lato'] text-[#000000]">
-                    Sắp xếp lại
-                  </span>
-                </div>
-                <Button type="primary" icon={<DownloadOutlined />} size={size}>
-                  In
-                </Button>
-              </div>
-            </div>
-            <div className="flex-1 flex flex-row bg-[#F2F6FF]">
-              <div className="flex h-full w-[260px] bg-stone-600">
-                {/* Info Here*/}
-                <Info />
-              </div>
-              <div className="flex-1 flex justify-center items-center">
-                {/* Picture Herer*/}
-                <div className="flex-1 flex flex-col items-center justify-center">
-                  <Img
-                    src="images/img_document_img.png"
-                    alt="Document Image"
-                    className="h-[868px] w-[48%] object-contain"
-                  />
-                </div>
-              </div>
+      <div className="flex-1 flex flex-row">
+        {/* Main Content (Info & Image Section) */}
+        {/* <div className="flex h-full w-[260px] bg-stone-600">
+          <Info />
+        </div> */}
+        <section className="flex-1 flex bg-[#F2F6FF]">
+          <div className="flex-1 flex flex-col items-center justify-center">
+            {/* Display the uploaded file preview */}
+            <div className="max-h-[868px] w-full flex items-center justify-center">
+              {renderPreview()}
             </div>
           </div>
-        </div>
+        </section>
       </div>
     </div>
   );

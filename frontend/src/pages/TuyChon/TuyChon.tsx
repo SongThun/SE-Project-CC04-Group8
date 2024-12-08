@@ -1,18 +1,17 @@
 import React, { useState } from "react";
 import { Upload, Button, Typography, Space, message } from "antd";
 import { InboxOutlined } from "@ant-design/icons";
-import PhanChonMayIn from "./PhanChonMayIn";
+import PhanTuyChon from "./PhanTuyChon";
 import Sidebar2 from "../../components/SidebarIn";
-import {useFile} from "../utils/FileHolder";
-
+import { useFile } from "../utils/FileHolder";
 const { Title, Text } = Typography;
 
-export default function ChonMayIn() {
-  const { handleFileChange ,file ,renderPreview ,displayUpload } = useFile();
+export default function TuyChon() {
+  const {handleFileChange ,file ,renderPreview ,displayUpload} = useFile();
 
   return (
     <section className="flex-1 flex flex-row h-full bg-[#F2F6FF] pt-[80px] justify-end">
-      <div className="flex-1 p-8 bg-[#F2F6FF] rounded-lg">
+      <div className="flex-1 p-8 bg-[#f2f6ff] rounded-lg">
         <div className="flex flex-col items-center justify-center space-y-6">
           {renderPreview()}
           <Space direction="vertical" size={16} className="w-full text-center">
@@ -44,8 +43,8 @@ export default function ChonMayIn() {
         </div>
       </div>
 
-      <div className="flex h-full w-[650px] p-8 bg-[#f5f5f5]  justify-center items-center shadow-lg">
-        <PhanChonMayIn />
+      <div className="flex h-full w-[650px] p-8 bg-[#f5f5f5] justify-center items-center shadow-lg ">
+        <PhanTuyChon />
       </div>
     </section>
   );
