@@ -11,7 +11,7 @@ export default function TongQuan() {
   const [size, setSize] = useState<SizeType>("large");
 
   return (
-    <div className="flex-1 flex flex-col bg-[#AAB1D1]">
+    <div className="flex-1 flex flex-col h-full bg-[#AAB1D1]">
       {/* Sap Xep Lai*/}
       <section className="flex h-[84px] w-full">
         <div className="flex flex-row h-full w-full items-center justify-between bg-white p-2.5">
@@ -22,7 +22,7 @@ export default function TongQuan() {
               alt="Sap Xep Lai"
               className="h-[24px] w-[24px]"
             />
-            <span className="text-[32px] font-medium font-['Lato'] text-[#000000]">
+            <span className="text-[32px] font-medium text-gray-800">
               Sắp xếp lại
             </span>
           </div>
@@ -42,7 +42,7 @@ export default function TongQuan() {
             <Img
               src="/src/assets/img_document_img.png"
               alt="Document Image"
-              className="h-[868px] w-[48%] object-contain"
+              className="h-[600px] w-[400px] object-contain"
             />
           </div>
         </section>
