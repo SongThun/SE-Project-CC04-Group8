@@ -12,7 +12,6 @@ export default function TongQuan() {
 
   return (
     <div className="flex-1 flex flex-col bg-[#AAB1D1]">
-      <div className="flex h-[80px] w-full bg-black">{/* Delete This */}</div>
       {/* Sap Xep Lai*/}
       <section className="flex h-[84px] w-full">
         <div className="flex flex-row h-full w-full items-center justify-between bg-white p-2.5">
