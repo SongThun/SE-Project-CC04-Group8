@@ -8,7 +8,7 @@ import {useFile} from "../utils/FileHolder";
 const { Title, Text } = Typography;
 
 export default function ChonMayIn() {
-  const { displayUpload } = useFile();
+  const { handleFileChange ,file ,renderPreview ,displayUpload } = useFile();
 
   return (
     <section className="flex-1 flex flex-row h-full bg-[#F2F6FF] justify-end">

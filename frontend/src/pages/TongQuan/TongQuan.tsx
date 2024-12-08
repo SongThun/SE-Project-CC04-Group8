@@ -40,11 +40,10 @@ export default function TongQuan() {
         </div> */}
         <section className="flex-1 flex bg-[#F2F6FF]">
           <div className="flex-1 flex flex-col items-center justify-center">
-            <Img
-              src="/src/assets/img_document_img.png"
-              alt="Document Image"
-              className="h-[600px] w-[400px] object-contain"
-            />
+            {/* Display the uploaded file preview */}
+            <div className="max-h-[868px] w-full flex items-center justify-center">
+              {renderPreview()}
+            </div>
           </div>
         </section>
       </div>
