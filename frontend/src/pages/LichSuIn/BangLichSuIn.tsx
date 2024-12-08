@@ -15,6 +15,8 @@ const HistoryTable: React.FC = () => {
   const fetchHistory = async () => {
     try {
       const response = await api.get("/api/spso/getPrintHistory");
+      console.log("Print history:", api.get("/api/spso/getPrintHistory"));
+
       setHistory(response.data);
     } catch (error) {
       console.error("Error fetching print history:", error);
