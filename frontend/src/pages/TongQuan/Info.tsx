@@ -6,10 +6,7 @@ const { Title } = Typography;
 
 const Info: React.FC = () => {
   return (
-    <div className="flex flex-col max-h-[1000px] w-[260px] p-5 gap-10 bg-[#E5EEFF] overflow-auto">
-      <Title level={3} className="text-center text-[#003366] mb-6">
-        Document Gallery
-      </Title>
+    <div className="flex flex-col max-h-[800px] w-[260px] p-5 gap-10 bg-[#E5EEFF] overflow-auto">
       {/* Content inside the scrollable container */}
       <div className="flex flex-col items-center gap-6">
         {[...Array(5)].map((_, index) => (

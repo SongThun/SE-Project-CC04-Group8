@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Img } from "../../components/Img";
 import { Input, Button } from "antd";
+import { useNavigate } from "react-router-dom"; // Import useNavigate from react-router-dom
 import type { GetProps } from "antd";
 import type { ConfigProviderProps } from "antd";
+import api from "../../api/api";
 
 type SearchProps = GetProps<typeof Input.Search>;
 type SizeType = ConfigProviderProps["componentSize"];
@@ -14,224 +16,135 @@ const onSearch: SearchProps["onSearch"] = (value, _e, info) =>
   console.log(info?.source, value);
 
 export default function PhanChonMayIn() {
+  const [printers, setPrinters] = useState<any[]>([]);
   const [size, setSize] = useState<SizeType>("large");
   const [selectedPrinter, setSelectedPrinter] = useState<string | null>(null);
   const [location, setLocation] = useState<string>("");
   const [status, setStatus] = useState<string>("");
 
-  // Printer info mapping
-  const printerInfo = {
-    "QuickBooks PDF Converter 3.0": {
-      location: "B11",
-      status: "Sẵn sàng",
-    },
-    OM2PDF: {
-      location: "Tòa nhà C12",
-      status: "Không sẵn sàng",
-    },
-    "Microsoft XPS Document Writer": {
-      location: "Tòa nhà A7",
-      status: "Sẵn sàng",
-    },
-    "Microsoft XPS Document Writer 2": {
-      location: "Tòa nhà D5",
-      status: "Sẵn sàng",
-    },
+  const navigate = useNavigate(); // Initialize the navigate function
+
+  // Fetch printer data from the database (using the provided printers array)
+  const fetchPrinters = async () => {
+    try {
+      // Simulate an API call for fetching printers data (you would fetch from your backend here)
+      const response = await api.get("/api/spso/getPrinters");
+      setPrinters(response.data); // Update the state with the fetched printer data
+    } catch (error) {
+      console.error("Error fetching printers", error);
+    }
   };
 
-  // Dynamically inject Google Fonts in the head of the document
   useEffect(() => {
-    const link = document.createElement("link");
-    link.href =
-      "https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Merriweather:wght@400;700&display=swap";
-    link.rel = "stylesheet";
-    document.head.appendChild(link);
-
-    // Cleanup when component unmounts
-    return () => {
-      document.head.removeChild(link);
-    };
+    fetchPrinters(); // Call to fetch printer data on component mount
   }, []);
 
-  const handlePrinterSelect = (printerName: string) => {
-    setSelectedPrinter(printerName); // Update the selected printer
-    const printerDetails = printerInfo[printerName];
-    setLocation(printerDetails.location); // Update location
-    setStatus(printerDetails.status); // Update status
+  // Filter the printers to show only those with status "Hoạt động"
+  const activePrinters = printers.filter(
+    (printer) => printer.status === "Hoạt động"
+  );
+
+  // Handle selecting a printer and updating its details
+  const handlePrinterSelect = (printerId: number) => {
+    const selected = activePrinters.find(
+      (printer) => printer.printerId === printerId
+    );
+    if (selected) {
+      setSelectedPrinter(selected.brand); // Set the selected printer's brand as the selected name
+      setLocation(selected.location); // Set the location
+      setStatus(selected.status); // Set the status
+    }
+  };
+
+  // Handle button click to navigate to another page
+  const handleNavigate = () => {
+    navigate("selection"); // Replace "/new-page" with your desired route
   };
 
   return (
-    <>
-      <div
-        className="flex-1 flex flex-col items-center justify-center gap-5 p-14 "
-        style={{ fontFamily: "Roboto, sans-serif" }}
-      >
-        <div className="flex flex-row w-full items-start">
-          <span
-            className="text-[32px] font-normal font-['Merriweather'] text-[#000000]"
-            style={{ fontFamily: "Merriweather, serif" }}
-          >
-            Lựa chọn máy in:
-          </span>
-        </div>
-
-        {/* Scrollable Printer Options */}
-        <div
-          className="flex flex-col w-full gap-5 rounded border border-solid border-[#0000007f] bg-[#ffffff] px-2 py-2.5"
-          style={{ maxHeight: "300px", overflowY: "auto" }} // Add scrollable styles
-        >
-          <Search
-            placeholder="Search"
-            allowClear
-            onSearch={onSearch}
-            style={{ width: "100%" }}
-          />
-
-          {/* Printer Option 1 */}
-          <div
-            onClick={() => handlePrinterSelect("QuickBooks PDF Converter 3.0")}
-            className={`flex items-center gap-2.5 p-2.5 sm:flex-row cursor-pointer ${
-              selectedPrinter === "QuickBooks PDF Converter 3.0"
-                ? "bg-blue-100" // Selected style
-                : ""
-            }`}
-          >
-            <Img
-              src="/src/assets/img_mayin2.svg"
-              alt="Tuy Chon"
-              className="h-[24px] w-[24px]"
-            />
-            <span
-              className="text-[24px] font-normal text-[#000000]"
-              style={{ fontFamily: "Roboto, sans-serif" }}
-            >
-              QuickBooks PDF Converter 3.0
-            </span>
-          </div>
-
-          {/* Printer Option 2 */}
-          <div
-            onClick={() => handlePrinterSelect("OM2PDF")}
-            className={`flex items-center gap-2.5 p-2.5 sm:flex-row cursor-pointer ${
-              selectedPrinter === "OM2PDF" ? "bg-blue-100" : ""
-            }`}
-          >
-            <Img
-              src="/src/assets/img_mayin2.svg"
-              alt="Tuy Chon"
-              className="h-[24px] w-[24px]"
-            />
-            <span
-              className="text-[24px] font-normal text-[#000000]"
-              style={{ fontFamily: "Roboto, sans-serif" }}
-            >
-              OM2PDF
-            </span>
-          </div>
-
-          {/* Printer Option 3 */}
-          <div
-            onClick={() => handlePrinterSelect("Microsoft XPS Document Writer")}
-            className={`flex items-center gap-2.5 p-2.5 sm:flex-row cursor-pointer ${
-              selectedPrinter === "Microsoft XPS Document Writer"
-                ? "bg-blue-100"
-                : ""
-            }`}
-          >
-            <Img
-              src="/src/assets/img_mayin2.svg"
-              alt="Tuy Chon"
-              className="h-[24px] w-[24px]"
-            />
-            <span
-              className="text-[24px] font-normal text-[#000000]"
-              style={{ fontFamily: "Roboto, sans-serif" }}
-            >
-              Microsoft XPS Document Writer
-            </span>
-          </div>
-
-          {/* Printer Option 4 */}
-          <div
-            onClick={() =>
-              handlePrinterSelect("Microsoft XPS Document Writer 2")
-            }
-            className={`flex items-center gap-2.5 p-2.5 sm:flex-row cursor-pointer ${
-              selectedPrinter === "Microsoft XPS Document Writer 2"
-                ? "bg-blue-100"
-                : ""
-            }`}
-          >
-            <Img
-              src="/src/assets/img_mayin2.svg"
-              alt="Tuy Chon"
-              className="h-[24px] w-[24px]"
-            />
-            <span
-              className="text-[24px] font-normal text-[#000000]"
-              style={{ fontFamily: "Roboto, sans-serif" }}
-            >
-              Microsoft XPS Document Writer 2
-            </span>
-          </div>
-
-          {/* Add more printer options as needed */}
-        </div>
-
-        {/* Location and Status */}
-        <div className="flex flex-row w-full items-start gap-5">
-          <span
-            className="w-[130px] text-[24px] font-normal text-[#000000]"
-            style={{ fontFamily: "Roboto, sans-serif" }}
-          >
-            Địa điểm:
-          </span>
-          <span
-            className="text-[24px] font-normal text-[#000000]"
-            style={{ fontFamily: "Roboto, sans-serif" }}
-          >
-            {location || "Chưa chọn máy in"}
-          </span>
-        </div>
-
-        <div className="flex flex-row w-full items-start gap-5">
-          <span
-            className="w-[130px] text-[24px] font-normal text-[#000000]"
-            style={{ fontFamily: "Roboto, sans-serif" }}
-          >
-            Tình trạng:
-          </span>
-          <span
-            className="text-[24px] font-normal text-[#000000]"
-            style={{ fontFamily: "Roboto, sans-serif" }}
-          >
-            {status || "Chưa chọn máy in"}
-          </span>
-        </div>
-
-        {/* Notes Section */}
-        <div className="flex flex-col w-full items-center gap-5">
-          <div className="flex flex-row w-full items-start">
-            <span
-              className="text-[24px] font-normal text-[#000000]"
-              style={{ fontFamily: "Roboto, sans-serif" }}
-            >
-              Ghi chú:
-            </span>
-          </div>
-
-          <TextArea
-            rows={4}
-            size="large"
-            placeholder="Ghi chú..."
-            maxLength={255}
-            style={{ fontFamily: "Roboto, sans-serif" }}
-          />
-          <Button type="primary" shape="round" size={size}>
-            Áp dụng
-          </Button>
-        </div>
+    <div
+      className="flex-1 flex flex-col items-center justify-center gap-5 p-14"
+      style={{ fontFamily: "Roboto, sans-serif" }}
+    >
+      <div className="flex flex-row w-full items-start">
+        <span className="text-[32px] font-bold text-gray-800">
+          Lựa chọn máy in:
+        </span>
       </div>
-    </>
+
+      {/* Scrollable Printer Options */}
+      <div
+        className="flex flex-col w-full gap-5 rounded border border-solid border-[#0000007f] bg-[#ffffff] px-2 py-2.5"
+        style={{ maxHeight: "250px", overflowY: "auto" }}
+      >
+        <Search
+          placeholder="Search"
+          allowClear
+          onSearch={onSearch}
+          style={{ width: "100%" }}
+        />
+
+        {/* Dynamically render only active printers */}
+        {activePrinters.map((printer) => (
+          <div
+            key={printer.printerId}
+            onClick={() => handlePrinterSelect(printer.printerId)}
+            className={`flex items-center gap-2.5 p-2.5 sm:flex-row cursor-pointer ${
+              selectedPrinter === printer.brand ? "bg-blue-100" : ""
+            }`}
+          >
+            <Img
+              src="/src/assets/img_mayin2.svg"
+              alt="Tuy Chon"
+              className="h-[24px] w-[24px]"
+            />
+            <span
+              className="text-[24px] font-normal text-[#000000]"
+              style={{ fontFamily: "Roboto, sans-serif" }}
+            >
+              {printer.brand}
+            </span>
+          </div>
+        ))}
+      </div>
+
+      {/* Location and Status */}
+      <div className="flex flex-row w-full items-start gap-5">
+        <span className="w-[130px] text-[24px] font-medium text-gray-800">
+          Địa điểm:
+        </span>
+        <span className="text-[24px] font-normal text-gray-800">
+          {location || "Chưa chọn máy in"}
+        </span>
+      </div>
+
+      <div className="flex flex-row w-full items-start gap-5">
+        <span className="w-[130px] text-[24px] font-medium text-gray-800">
+          Tình trạng:
+        </span>
+        <span className="text-[24px] font-normal text-gray-800">
+          {status || "Chưa chọn máy in"}
+        </span>
+      </div>
+
+      {/* Notes Section */}
+      <div className="flex flex-col w-full items-center gap-5">
+        <div className="flex flex-row w-full items-start">
+          <span className="text-[24px] font-normal text-gray-800">
+            Ghi chú:
+          </span>
+        </div>
+
+        <TextArea
+          rows={4}
+          size="large"
+          placeholder="Ghi chú..."
+          maxLength={255}
+        />
+        <Button type="primary" shape="round" size={size}>
+          Áp dụng
+        </Button>
+      </div>
+    </div>
   );
 }

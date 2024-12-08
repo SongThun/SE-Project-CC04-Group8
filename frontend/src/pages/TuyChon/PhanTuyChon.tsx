@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate from react-router-dom
 import SoMatMoiTo from "./SoMatMoiTo";
 import SoTo from "./SoTo";
 import KhoangIn from "./KhoangIn";
 import KichCo from "./KichCo";
-import { Button } from "antd";
-import { Input } from "antd";
+import { Button, Input } from "antd";
 import type { ConfigProviderProps } from "antd";
 
 type SizeType = ConfigProviderProps["componentSize"];
@@ -13,6 +13,8 @@ const { TextArea } = Input;
 
 const PhanTuyChon = () => {
   const [size, setSize] = useState<SizeType>("large");
+
+  const navigate = useNavigate(); // Initialize the navigate function
 
   // Dynamically inject Google Fonts in the head of the document
   useEffect(() => {
@@ -28,18 +30,21 @@ const PhanTuyChon = () => {
     };
   }, []);
 
+  // Handle button click to navigate to another page
+  const handleNavigate = () => {
+    navigate("overview"); // Replace "/new-page" with your desired route
+  };
+
   return (
     <div
       className="flex-1 flex flex-col  items-center justify-center gap-5 p-14"
       style={{ fontFamily: "Roboto, sans-serif" }}
     >
       <div className="flex flex-row w-full items-start">
-        <span className="text-[32px] font-normal font-['Merriweather'] text-[#000000]">
-          Điều chỉnh:
-        </span>
+        <span className="text-[32px] font-bold text-gray-800">Điều chỉnh:</span>
       </div>
       <div className="flex flex-row w-full items-center gap-5">
-        <span className="w-[240px] text-[24px] font-normal font-['Roboto'] text-[#000000]">
+        <span className="w-[250px] text-[24px] font-normal text-gray-800">
           Số mặt mỗi tờ:
         </span>
         <div className="flex w-full justify-end">
@@ -47,7 +52,7 @@ const PhanTuyChon = () => {
         </div>
       </div>
       <div className="flex flex-row w-full items-center gap-5">
-        <span className="w-[160px] text-[24px] font-normal font-['Roboto'] text-[#000000]">
+        <span className="w-[250px] text-[24px] font-normal text-gray-800">
           Số tờ:
         </span>
         <div className="flex w-full justify-end">
@@ -55,7 +60,7 @@ const PhanTuyChon = () => {
         </div>
       </div>
       <div className="flex flex-row w-full items-center gap-5">
-        <span className="w-[160px] text-[24px] font-normal font-['Roboto'] text-[#000000]">
+        <span className="w-[160px] text-[24px] font-normal text-gray-800">
           Khoảng in:
         </span>
         <div className="flex w-full justify-end">
@@ -63,7 +68,7 @@ const PhanTuyChon = () => {
         </div>
       </div>
       <div className="flex flex-row w-full items-center gap-5">
-        <span className="w-[160px] text-[24px] font-normal font-['Roboto'] text-[#000000]">
+        <span className="w-[160px] text-[24px] font-normal text-gray-800">
           Kích cỡ:
         </span>
         <div className="flex w-full justify-end">
@@ -72,7 +77,7 @@ const PhanTuyChon = () => {
       </div>
       <div className="flex flex-col w-full items-center gap-5">
         <div className="flex flex-row w-full items-start">
-          <span className="text-[24px] font-normal font-['Roboto'] text-[#000000]">
+          <span className="text-[24px] font-normal text-gray-800">
             Ghi chú:
           </span>
         </div>

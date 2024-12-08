@@ -124,17 +124,17 @@ const router = createBrowserRouter([
               </ProtectedRoute>,
               },
               {
-                path: 'overview',
-                element:
-                <ProtectedRoute>
-                  <TongQuan/>
-                </ProtectedRoute>
-              },
-              {
                 path: 'selection',
                 element:
                 <ProtectedRoute>
                   <TuyChon/>
+                </ProtectedRoute>
+              },
+              {
+                path: 'overview',
+                element:
+                <ProtectedRoute>
+                  <TongQuan/>
                 </ProtectedRoute>
               },
             ]
