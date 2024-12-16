@@ -80,7 +80,7 @@ In the "Quản lý cấu hình" interface, you can view all the settings applied
 To modify any of these settings, simply click on “Chỉnh sửa”.
 
 ### Printer Management
-In the "Printer Management" interface, you can view all printers on the university campus, including both available and unavailable ones. You also have the option to search for specific printers.
+In the "Máy in" interface, you can view all printers on the university campus, including both available and unavailable ones. You also have the option to search for specific printers.
 
 ### Print History
 In the "Lịch sử hoạt động" interface, you can view all print requests made in the "In tài liệu" interface and payment requests made in the "Mua giấy" interface.
